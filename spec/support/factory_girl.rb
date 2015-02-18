@@ -13,6 +13,8 @@ FactoryGirl.define do
     city "Peabody"
     state "MA"
     zip_code "01960"
+
+    user
   end
 
 end

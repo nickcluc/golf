@@ -22,19 +22,14 @@ feature "user views a course", %{
 
   scenario "User Successfully adds a course" do
 
-    sign_in_as(test_user)
+    sign_in_as(test_course.user)
 
-    visit new_course_path
-
-    fill_in "Name", with: test_course.name
-    fill_in "Street Address", with: test_course.street_address
-    fill_in "City", with: test_course.city
-    select test_course.state, from: "State"
-    fill_in "Zip Code", with: test_course.zip_code
-
-    click_on "Create Course"
-
-    expect(page).to have_content "Course created successfully!"
+    visit course_path(test_course)
 
     expect(page).to have_content test_course.name
+    expect(page).to have_content test_course.street_address
+    expect(page).to have_content test_course.city
+    expect(page).to have_content test_course.state
+    expect(page).to have_content test_course.zip_code
   end
+end
