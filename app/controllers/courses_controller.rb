@@ -23,6 +23,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @location = [[@course.latitude, @course.longitude]]
   end
 
   private
@@ -34,7 +35,8 @@ class CoursesController < ApplicationController
       :city,
       :state,
       :zip_code,
-      :user_id
+      :user_id,
+      :phone
     )
   end
 end

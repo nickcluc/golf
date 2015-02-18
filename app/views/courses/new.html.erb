@@ -1,8 +1,16 @@
-<%= simple_form_for @course do |f| %>
-  <%= f.input :name %>
-  <%= f.input :street_address, label: "Street Address" %>
-  <%= f.input :city %>
-  <%= f.input :state, collection: us_states %>
-  <%= f.input :zip_code, label: "Zip Code" %>
-  <%= f.button :submit %>
-<% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1 class="title">Add A Course</h1>
+  </div>
+</div>
+<div class="small-8-centered columns">
+  <%= simple_form_for @course do |f| %>
+    <%= f.input :name %>
+    <%= f.input :street_address, label: "Street Address" %>
+    <%= f.input :city %>
+    <%= f.input :state, collection: us_states %>
+    <%= f.input :zip_code, label: "Zip Code" %>
+    <%= f.input :phone, label: "Phone Number" %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

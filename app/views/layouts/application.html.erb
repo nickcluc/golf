@@ -4,9 +4,12 @@
   <title>Golf</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{env[GOOGLE_MAPS_API_KEY]}"></script>
+
 </head>
 <body>
-  
+
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
