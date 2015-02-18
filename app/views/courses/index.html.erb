@@ -1,5 +1,9 @@
-<h1>All Courses</h1>
+<div class="row">
+  <h1 class="title">All Courses</h1>
+</div>
 
 <% @courses.each do |course| %>
-  <%= link_to course_path(course) %>
+  <div class="row">
+    <%= link_to course.name, course_path(course) %>
+  </div>
 <% end %>

@@ -14,6 +14,7 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'pry-rails'
 end
 
 
@@ -26,3 +27,5 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'simple_form'
+gem 'dotenv-rails', :groups => [:development, :test]
+gem 'geocoder'
