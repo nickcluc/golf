@@ -7,9 +7,17 @@
         1,
         1,
         1,
+        1,
         null,
         null,
         1,
+        null,
+        null
+      ],
+      "/Users/nickcluc/Dropbox/launch/projects/golf/app/helpers/dashboard_helper.rb": [
+        1,
+        1,
+        10,
         null,
         null
       ],
@@ -73,6 +81,12 @@
         null,
         null
       ],
+      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/tee.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/course.rb": [
         1,
         1,
@@ -82,14 +96,14 @@
         1,
         null,
         1,
+        5,
+        null,
+        1,
+        3,
+        null,
+        null,
+        1,
         4,
-        null,
-        1,
-        2,
-        null,
-        null,
-        1,
-        2,
         null,
         null,
         null
@@ -99,6 +113,10 @@
         null,
         null,
         1,
+        null,
+        1,
+        7,
+        null,
         null
       ],
       "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/homes_controller.rb": [
@@ -132,8 +150,9 @@
         null,
         null,
         1,
-        2,
-        2,
+        4,
+        4,
+        4,
         null,
         null,
         1,
@@ -150,8 +169,28 @@
         null,
         null,
         null
+      ],
+      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/tees_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
       ]
     },
-    "timestamp": 1424224022
+    "timestamp": 1424407340
   }
 }

@@ -24,6 +24,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @location = [[@course.latitude, @course.longitude]]
+    @new_tee = Tee.new
   end
 
   private

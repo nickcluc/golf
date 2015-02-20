@@ -16,8 +16,8 @@ feature 'user registers', %Q{
     visit new_user_registration_path
 
     fill_in 'Email', with: 'john@example.com'
-    fill_in 'Password', with: 'password'
-    fill_in 'Password confirmation', with: 'password'
+    fill_in 'Password', with: 'password', match: :prefer_exact
+    fill_in 'Confirm Password', with: 'password'
 
     click_button 'Sign up'
 

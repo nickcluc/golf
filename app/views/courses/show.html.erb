@@ -16,6 +16,34 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="small-4 columns">
+    <h4>Recently Played Rounds</h4>
+  </div>
+  <div class="small-8 columns right">
+    <h4>Tees</h4>
+    <% @course.tees.each do |tee| %>
+      <div class="row">
+        <%= tee.try(:name) %><br>
+        <%= tee.color %><br>
+        Rating: <%= tee.rating %>
+        Slope: <%= tee.slope %>
+        Yardage: <%= tee.yardage %> yds
+      </div>
+    <% end %>
+    <% if current_user %>
+      <% if @course.user == current_user %>
+        <div class="button radius">
+          Add Tee
+        </div>
+        <div id="tee_form">
+          <%= render "tees/form" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 
 <script type="text/javascript" charset="utf-8">
   var addresses = <%= @location %>;
