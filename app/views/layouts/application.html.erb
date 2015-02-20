@@ -4,34 +4,35 @@
   <title>Golf</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
-
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{env[GOOGLE_MAPS_API_KEY]}"></script>
 
 </head>
 <body>
-
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Golf</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
+  <% unless current_page?(root_path) %>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Golf</a></h1>
+        </li>
       </ul>
-    </section>
-  </nav>
 
+      <section class="top-bar-section">
+        <ul class="right">
+          <%- if current_user -%>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <%- else -%>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <%- end -%>
+        </ul>
+      </section>
+    </nav>
+  <% end %>
   <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
+    <div class="alert-box flash-<%= key %>" style="margin-bottom:0;">
       <%= value %>
+      <a href="" class="close">×</a>
     </div>
   <%- end -%>
 

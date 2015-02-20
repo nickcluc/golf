@@ -17,4 +17,11 @@ FactoryGirl.define do
     user
   end
 
+  factory :tee do
+    color "White"
+    slope 124
+    rating 68.7
+    yardage 5795
+  end
+
 end

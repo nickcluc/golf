@@ -1,0 +1,22 @@
+<div class="panel radius">
+  <h4>Existing Users</h4>
+  <%= form_for(resource, url: session_path(resource)) do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+    <div class="">
+
+    </div>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+
+
+      <div class="actions">
+        <%= f.submit "Log in", class:"small button radius" %>
+      </div>
+  <% end %>
+</div>

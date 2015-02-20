@@ -1,0 +1,22 @@
+.module {
+  width: auto;
+  max-width:100%;
+  background:
+  linear-gradient(
+  rgba(0, 0, 0, 0.7),
+  rgba(0, 0, 0, 0.7)
+  ),
+  url(asset-path("background.jpg"));
+  background-size: cover;
+  height: 100vh;
+}
+.page-title {
+  margin-top: 0;
+  font-size: 3em;
+  color: #eaeaea;
+  font-family: Helvetica;
+  font-weight:bold;
+}
+// #sign-in-form, #sign-up-form {
+//   display: none;
+// }
