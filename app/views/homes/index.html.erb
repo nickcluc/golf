@@ -1,14 +1,15 @@
 <div class="module">
   <br>
-  <div class="row">
-    <div class="small-8 columns">
+  <div class="row" data-equalizer>
+    <div class="small-8 columns" data-equalizer-watch>
       <h1 class="page-title">Welcome to Wagglr</h1>
       <h5 style="color:white;">
         Connect with your friends on and off the course. Create a league with friends,
         compete, and trash talk your buddies the next time you see them.
       </h5>
+      <blockquote class="bottom">The most important shot in golf is the next one.<cite>Ben Hogan</cite></blockquote>
     </div>
-    <div class="small-4 columns">
+    <div class="small-4 columns" data-equalizer-watch>
       <% if current_user %>
         <%= link_to "New Course", new_course_path, class: "button radius" %>
         <br>
