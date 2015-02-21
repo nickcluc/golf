@@ -7,11 +7,23 @@
         Connect with your friends on and off the course. Create a league with friends,
         compete, and trash talk your buddies the next time you see them.
       </h5>
-      <blockquote class="bottom">The most important shot in golf is the next one.<cite>Ben Hogan</cite></blockquote>
+      <% if current_user %>
+        <% if @last_three_rounds %>
+          <ul>
+            <% @last_three_rounds.each do |round| %>
+              <li><%= round.user.name %> played <%= round.course %> and shot <%= round.score %> over <%= round.hole_count %> holes!</li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
     </div>
     <div class="small-4 columns" data-equalizer-watch>
       <% if current_user %>
-        <%= link_to "New Course", new_course_path, class: "button radius" %>
+        <%= link_to "Add a Course", new_course_path, class: "button radius" %>
+        <br>
+        <%= link_to "New Round", new_round_path, class: "button radius" %>
+        <br>
+        <%= link_to "My Page Info", user_path(current_user), class: "button radius" %>
         <br>
         <br>
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "button radius" %>
@@ -34,5 +46,8 @@
         </div>
       <% end %>
     </div>
+  </div>
+  <div class="row">
+    <blockquote class="bottom">The most important shot in golf is the next one.<cite>Ben Hogan</cite></blockquote>
   </div>
 </div>
