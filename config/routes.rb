@@ -3,8 +3,17 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :users, only: [:show]
+
   resources :courses, only: [:new, :index, :create, :show]
+
   resources :courses, only: [:show] do
     resources :tees, only: [:create]
+  end
+
+  resources :rounds, only: [:new, :index, :create, :show]
+
+  resources :rounds, only: [:show] do
+    resources :player_rounds, only: [:index, :create]
   end
 end

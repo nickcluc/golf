@@ -18,10 +18,25 @@ FactoryGirl.define do
   end
 
   factory :tee do
+    name "White"
     color "White"
     slope 124
     rating 68.7
     yardage 5795
+
+    course
+  end
+
+  factory :round do
+    round_date Date.today
+    tee_time "9:26am"
+
+    user
+  end
+
+  factory :player_round do
+    hole_count 18
+    score 80
   end
 
 end

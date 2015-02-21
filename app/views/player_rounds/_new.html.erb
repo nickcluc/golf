@@ -1,0 +1,7 @@
+<h2>New Player Score</h2>
+<%= simple_form_for [@round, @player_round] do |f| %>
+  <%= f.input :hole_count, label: "Number of Holes" %>
+  <%= f.input :score %>
+  <%= f.input :tee_id, collection: @course_tees.pluck(:color) %>
+  <%= f.submit "Save Score",  class: "button small radius" %>
+<% end %>

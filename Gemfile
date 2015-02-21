@@ -29,3 +29,4 @@ gem 'foundation-rails'
 gem 'simple_form'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'geocoder'
+gem 'pikaday-gem'

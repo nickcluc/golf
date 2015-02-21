@@ -7,3 +7,9 @@
 //   $( "#sign-up-form" ).toggle( "slow", function() {
 //   });
 // });
+
+
+var picker = new Pikaday({
+  field: $('#round_date')[0],
+  format: 'DD/MM/YYYY'
+});
