@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "User adds a new round", %{
   As a user,

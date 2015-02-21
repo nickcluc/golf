@@ -3,7 +3,6 @@ class PlayerRoundsController < ApplicationController
     @player_round = PlayerRound.new(player_round_params)
     @player_round.user = current_user
     @player_round.round = Round.find(params[:round_id])
-    # binding.pry
     if @player_round.save
       flash[:notice] = "Score Saved Successfully!"
       redirect_to round_path(@player_round.round)
