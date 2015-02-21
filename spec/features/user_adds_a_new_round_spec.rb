@@ -17,7 +17,6 @@ feature "User adds a new round", %{
   end
 
   scenario "User successfully creates a new round" do
-
     test_round = FactoryGirl.build(:round)
 
     sign_in_as(test_tee.course.user)
@@ -38,6 +37,5 @@ feature "User adds a new round", %{
     click_on "Save Score"
 
     expect(page).to have_content "Score Saved Successfully!"
-
   end
 end
