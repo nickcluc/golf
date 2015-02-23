@@ -32,11 +32,15 @@ FactoryGirl.define do
     tee_time "9:26am"
 
     user
+    course
   end
 
   factory :player_round do
     hole_count 18
     score 80
+
+    round
+    tee
   end
 
 end

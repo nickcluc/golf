@@ -1,1 +1,60 @@
-<%= @user.email %>
+
+  <div class="row cover">
+    <div class="small-3 columns">
+      <p>
+        pic here
+      </p>
+    </div>
+    <div class="small-9 columns">
+      <h1 style="text-align: right;"><%= @user.name %><br>(<%= @user.email %>)</h1>
+    </div>
+  </div>
+  <div class="row">
+    <h4 style="text-align:right;">Handicap: <%= @user.handicap %></h4>
+  </div>
+
+  <div class="row">
+    <div class="small-6 columns">
+      <h3 class="text-center">Upcoming Rounds</h3>
+      <div class="panel callout radius">
+        <% @user.upcoming_rounds.each do |upcoming| %>
+          <div class="row">
+            <p class="text-center">
+              Course: <%= upcoming.course.name %><br>
+              Tee Time:
+              <%= link_to "#{upcoming.round_date.strftime("%m/%d/%Y")} #{upcoming.tee_time.strftime("at %I:%M%p")}", round_path(upcoming) %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="small-6 columns">
+      <h3 class="text-center">Recently Finished Rounds</h3>
+      <div class="panel callout radius">
+        <% @user.not_scored_rounds.each do |not_scored| %>
+          <div class="row">
+            <p class="text-center">
+              Course: <%= not_scored.course.name %><br>
+              Tee Time:
+              <%= link_to "#{not_scored.round_date.strftime("%m/%d/%Y")} #{not_scored.tee_time.strftime("at %I:%M%p")}", round_path(upcoming) %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3 class="text-center">Scored Rounds</h3>
+    <div class="panel callout radius">
+      <% @user.player_rounds.last(3).each do |played| %>
+        <div class="row">
+          <p class="text-center">
+            Course: <%= played.round.course.name %><br>
+            Date: <%= played.round.round_date.strftime("%m/%d/%Y") %>
+            Score: <%= played.score %> over <%= played.hole_count %> holes
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
