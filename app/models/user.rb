@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
       usable_differentials = []
       diff_count = differentials.length
       if diff_count == 5 || diff_count == 6
-        binding.pry
         n = 1
       elsif diff_count == 7 || diff_count == 8
         n = 2
