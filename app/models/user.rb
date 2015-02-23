@@ -10,13 +10,13 @@ class User < ActiveRecord::Base
 
   def not_scored_rounds
     not_scored = []
-      rounds.each do |round|
-        if round.round_date < Date.today
-          if round.score == nil
-            not_scored << round
-          end
+    rounds.each do |round|
+      if round.round_date < Date.today
+        if round.player_rounds.empty?
+          not_scored << round
         end
       end
+    end
     not_scored.last(3)
   end
 
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
         differentials << (round.score - round.tee.rating) * 113 / round.tee.slope
       end
       differentials.sort!
-      usable_differentials =[]
+      usable_differentials = []
       diff_count = differentials.length
       if diff_count == 5 || diff_count == 6
         n = 1
@@ -63,10 +63,13 @@ class User < ActiveRecord::Base
       n.times do
         usable_differentials << differentials.pop
       end
-      hcap = usable_differentials.inject(0) { |sum, number| sum + number } / usable_differentials.length * 0.96
-      hcap = hcap.round(0)
+      hcap_sum = usable_differentials.inject(0) do |sum, number|
+        sum + number
+      end
+      hcap = (hcap_sum / usable_differentials.length * 0.96).round(0)
     else
-      hcap = "You need to play #{5-player_rounds.count} more rounds to calculate a handicap."
+      hcap = "You need to play #{5-player_rounds.count}
+                more rounds to calculate a handicap."
     end
     hcap
   end

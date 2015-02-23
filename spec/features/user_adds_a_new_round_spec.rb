@@ -32,7 +32,6 @@ feature "User adds a new round", %{
 
     fill_in "Number of Holes", with: 18
     fill_in "Score", with: 80
-    save_and_open_page
     select test_tee.color, from: "Tee"
 
     click_on "Save Score"

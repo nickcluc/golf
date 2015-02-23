@@ -22,7 +22,8 @@
             <p class="text-center">
               Course: <%= upcoming.course.name %><br>
               Tee Time:
-              <%= link_to "#{upcoming.round_date.strftime("%m/%d/%Y")} #{upcoming.tee_time.strftime("at %I:%M%p")}", round_path(upcoming) %>
+              <%= link_to "#{upcoming.round_date.strftime("%m/%d/%Y")}
+                #{upcoming.tee_time.strftime("at %I:%M%p")}", round_path(upcoming) %>
             </p>
           </div>
         <% end %>
@@ -36,7 +37,8 @@
             <p class="text-center">
               Course: <%= not_scored.course.name %><br>
               Tee Time:
-              <%= link_to "#{not_scored.round_date.strftime("%m/%d/%Y")} #{not_scored.tee_time.strftime("at %I:%M%p")}", round_path(upcoming) %>
+              <%= link_to "#{not_scored.round_date.strftime("%m/%d/%Y")}
+                #{not_scored.tee_time.strftime("at %I:%M%p")}", round_path(not_scored) %>
             </p>
           </div>
         <% end %>

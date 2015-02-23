@@ -15,6 +15,7 @@
         1,
         1,
         1,
+        1,
         0,
         0,
         0,
@@ -27,8 +28,8 @@
         1,
         1,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         1,
@@ -67,10 +68,13 @@
         2,
         2,
         null,
-        4,
+        2,
+        2,
+        null,
         2,
         null,
         0,
+        null,
         null,
         2,
         null,
@@ -148,7 +152,6 @@
         1,
         1,
         1,
-        null,
         null
       ],
       "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/course.rb": [
@@ -160,10 +163,10 @@
         1,
         null,
         1,
-        17,
+        18,
         null,
         1,
-        15,
+        16,
         null,
         null,
         1,
@@ -337,6 +340,6 @@
         null
       ]
     },
-    "timestamp": 1424722339
+    "timestamp": 1424726099
   }
 }
