@@ -8,6 +8,7 @@ class RoundsController < ApplicationController
   def create
     @round = Round.new(round_params)
     @round.user = current_user
+    @round.course ||= @player_round.tee.course
     if @round.save
       flash[:notice] = "Round Created Successfully!"
       redirect_to round_path(@round)

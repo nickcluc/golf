@@ -18,13 +18,13 @@ feature "User adds a new round", %{
 
   scenario "User successfully creates a new round" do
     test_round = FactoryGirl.build(:round)
-
+    test_tee = FactoryGirl.create(:tee, course: test_round.course)
     sign_in_as(test_tee.course.user)
 
     visit new_round_path
 
     fill_in "Date", with: test_round.round_date
-    select test_tee.course.name, from: "Course"
+    select test_tee.course.name, from: "Course", match: :first
     fill_in "Tee Time", with: test_round.tee_time
     click_on "Create Round"
 
