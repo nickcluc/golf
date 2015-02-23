@@ -15,19 +15,24 @@ feature "User views their page", %{
   end
 
   scenario "User views their player page" do
-    5.times do
-      FactoryGirl.create(:player_round, user_id: test_user.id)
-    end
     sign_in_as(test_user)
 
     visit user_path(test_user)
     expect(page).to have_content test_user.name
     expect(page).to have_content test_user.email
-    expect(page).to have_content test_user.handicap
     expect(page).to have_content "Upcoming Rounds"
     expect(page).to have_content @future_round.round_date.strftime("%m/%d/%Y")
     expect(page).to have_content @past_round.round_date.strftime("%m/%d/%Y")
     expect(page).to have_content "Recently Finished Rounds"
+  end
+  (5..20).each do |i|
+    scenario "user sees their handicap based on rounds count" do
+      i.times do
+        FactoryGirl.create(:player_round, user_id: test_user.id)
+      end
+      visit user_path(test_user)
+      expect(page).to have_content test_user.handicap
+    end
   end
 
 end
