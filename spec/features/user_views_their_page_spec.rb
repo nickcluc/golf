@@ -11,6 +11,7 @@ feature "User views their page", %{
 
   before (:each) do
     @future_round = FactoryGirl.create(:round, round_date: Date.today + 3, user_id: test_user.id)
+    @past_round = FactoryGirl.create(:round, round_date: Date.today - 3, user_id: test_user.id)
   end
 
   scenario "User views their player page" do
@@ -25,6 +26,7 @@ feature "User views their page", %{
     expect(page).to have_content test_user.handicap
     expect(page).to have_content "Upcoming Rounds"
     expect(page).to have_content @future_round.round_date.strftime("%m/%d/%Y")
+    expect(page).to have_content @past_round.round_date.strftime("%m/%d/%Y")
     expect(page).to have_content "Recently Finished Rounds"
   end
 
