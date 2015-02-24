@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   def upcoming_rounds
     upcoming = []
-    rounds.last(3).each do |round|
+    rounds.each do |round|
       if round.round_date > Date.today
         upcoming << round
       end
@@ -72,5 +72,15 @@ class User < ActiveRecord::Base
                 more rounds to calculate a handicap."
     end
     hcap
+  end
+
+  def course_rounds(course)
+    upcoming_course_rounds = []
+    rounds.where(course_id: course.id).each do |round|
+      if round.round_date > Date.today
+        upcoming_course_rounds << round
+      end
+    end
+    upcoming_course_rounds
   end
 end

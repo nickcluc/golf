@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  *= require pikaday
+ *= require jquery-tablesorter/theme.grey
+ *= require jquery-tablesorter/addons/pager/jquery.tablesorter.pager
  *= require foundation_and_overrides
 
  */

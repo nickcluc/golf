@@ -1,9 +1,37 @@
-<h1>Round on <%= @round.round_date %></h1>
-
-<div class="button radius" id="player-round-button">
-  Enter Scores
+<div class="row">
+  <h1 class="text-center">Round on <%= @round.round_date.strftime("%B %d, %Y") %></h1>
 </div>
 
-<div id="player-round-form">
-  <%= render "player_rounds/new" %>
+<div class="row">
+  <div class="small-4 columns">
+    <ul class="pricing-table">
+      <li class="title"><%= @round.course.name %></li>
+      <li class="price"><%= @round.tee_time.strftime("%l:%M %p") %></li>
+      <li class="description">
+        <%= @round.course.street_address %><br>
+        <%= @round.course.city %>, <%= @round.course.state %> <%= @round.course.zip_code %>
+      </li>
+      <li class="description">Organized By: <%= link_to "#{@round.user.name}", user_path(@round.user) %></li>
+    </ul>
+  </div>
+  <div class="small-8 columns">
+    <div id="map-canvas">
+
+    </div>
+  </div>
 </div>
+
+<div class="row">
+  <div class="button radius" id="player-round-button">
+    Enter Scores
+  </div>
+
+  <div id="player-round-form">
+    <%= render "player_rounds/new" %>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  var addresses = <%= @location %>;
+  var searchCity = "<%= @round.course.full_address %>";
+</script>
