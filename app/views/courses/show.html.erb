@@ -1,46 +1,76 @@
 <div class="row">
   <div class="small-12 columns">
-    <h1><%= @course.name %></h1>
+    <h1 class="text-center"><%= @course.name %></h1>
   </div>
 </div>
 
 <div class="row">
-  <div class="small-8 columns">
+  <div class="large-7 small-8 small-centered large-uncentered columns">
     <div id="map-canvas"></div>
   </div>
-  <div class="small-4 columns">
+  <div class="large-5 small-12 columns">
     <ul>
-      <li><%= @course.street_address %> <%= @course.city %>, <%= @course.state %> <%= @course.zip_code %></li>
-      <li><%= @course.phone %></li>
+      <h4>Course Info</h4>
+      <li><%= @course.street_address %><br><%= @course.city %>, <%= @course.state %> <%= @course.zip_code %></li>
+      <li>Phone: <%= @course.phone %></li>
+      <h4>Tees</h4>
+      <% @course.tees.to_a.sort_by!{|tee| tee.yardage}.reverse.each do |tee| %>
+        <li>
+          <%= tee.color %>:
+          Rating: <%= tee.rating %>;
+          Slope: <%= tee.slope %>
+          Yardage: <%= tee.yardage %> yds <br>
+          <% if current_user %>
+            <% unless current_user.handicap.class == String %>
+              Your Handicap:
+              <%= current_user.handicap * tee.slope / 113 %>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+      <% if current_user %>
+        <% if @course.user == current_user %>
+          <div class="button tiny radius" id="add_tee_button">
+            Add Tee
+          </div>
+          <div id="add_tee_form">
+            <%= render "tees/form" %>
+          </div>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 </div>
-
+<br>
 <div class="row">
-  <div class="small-4 columns">
-    <h4>Recently Played Rounds</h4>
-  </div>
-  <div class="small-8 columns right">
-    <h4>Tees</h4>
-    <% @course.tees.each do |tee| %>
-      <div class="row">
-        <%= tee.try(:name) %><br>
-        <%= tee.color %><br>
-        Rating: <%= tee.rating %>
-        Slope: <%= tee.slope %>
-        Yardage: <%= tee.yardage %> yds
-      </div>
-    <% end %>
-    <% if current_user %>
-      <% if @course.user == current_user %>
-        <div class="button radius">
-          Add Tee
-        </div>
-        <div id="tee_form">
-          <%= render "tees/form" %>
+  <div class="small-3 columns">
+    <h4 class="text-center">Recently Played Rounds</h4>
+    <% @course.rounds.each do |round| %>
+      <% round.player_rounds.each do |player_round| %>
+        <div class="row">
+          <%= link_to "#{player_round.round.round_date.strftime("%m/%d/%Y")}:
+          #{player_round.user.email} - #{player_round.score}", round_path(player_round.round) %>
         </div>
       <% end %>
     <% end %>
+  </div>
+  <div class="small-5 columns">
+    <h4 class="text-center">Your Upcoming Rounds at <%= @course.name %></h4>
+    <% if current_user %>
+      <% if current_user.course_rounds(@course).empty? %>
+        <h5>You don't have any rounds scheduled here.</h5>
+      <% else %>
+        <% current_user.course_rounds(@course).each do |round| %>
+          <div class="row">
+              <%= link_to "#{round.round_date.strftime("%m/%d/%Y")}
+              #{round.tee_time.strftime("at %I:%M%p")}", round_path(round) %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="small-4 columns">
+
   </div>
 </div>
 

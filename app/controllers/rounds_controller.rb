@@ -21,6 +21,7 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @player_round = PlayerRound.new
     @course_tees = @round.course.tees
+    @location = [[@round.course.latitude, @round.course.longitude]]
   end
 
   private

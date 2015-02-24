@@ -1,4 +1,6 @@
 class TeesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @tee = Tee.new(tee_params)
     @tee.course = Course.find(params[:course_id])

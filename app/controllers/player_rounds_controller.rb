@@ -1,4 +1,6 @@
 class PlayerRoundsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @player_round = PlayerRound.new(player_round_params)
     @player_round.user = current_user
