@@ -3,6 +3,7 @@
 ##### Screenshots:
 
 ![homepage](screenshots/homepage.png)
+![homepage signed in](screenshots/home2.png)
 ![user dashboard](screenshots/user_dashboard.png)
 
 [![Build Status](https://travis-ci.org/nickcluc/golf.svg?branch=master)](https://travis-ci.org/nickcluc/golf)
