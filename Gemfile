@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+ruby "2.1.4"
+
 gem 'rails', '4.2.0'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -24,6 +26,7 @@ gem 'launchy', group: [:development, :test]
 gem 'factory_girl', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
+gem 'rails_12factor', group: :production
 gem 'devise'
 gem 'foundation-rails'
 gem 'simple_form'
@@ -31,3 +34,4 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'geocoder'
 gem 'pikaday-gem'
 gem 'jquery-tablesorter'
+gem 'rails-erd'
