@@ -1,6 +1,6 @@
 #Social Golf App
 
-#### View On The Internet
+#### View Live
 [wagglr](https://wagglr.herokuapp.com/)
 
 #### Entity Relationship Diagram
