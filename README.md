@@ -3,6 +3,9 @@
 #### View On The Internet
 [wagglr](https://wagglr.herokuapp.com/)
 
+#### Entity Relationship Diagram
+![er diagram](screenshots/models_diagram.png)
+
 #### Screenshots:
 
 ![homepage](screenshots/homepage.png)
