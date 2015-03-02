@@ -35,6 +35,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'dotenv-rails'
   gem 'shoulda-matchers', require: false
+  gem 'railroady'
 end
 
 gem 'sdoc', '~> 0.4.0', group: :doc
