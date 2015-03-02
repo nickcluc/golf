@@ -3,6 +3,8 @@ require 'factory_girl'
 FactoryGirl.define do
   factory :user do
     sequence(:email) {|n| "user#{n}@example.com" }
+    first_name "Nick"
+    last_name "Clucas"
     password 'password'
     password_confirmation 'password'
   end
@@ -14,6 +16,7 @@ FactoryGirl.define do
     state "MA"
     zip_code "01960"
 
+    after(:build) { |course| course.class.skip_callback(:create, :after, :geocode) }
     user
   end
 

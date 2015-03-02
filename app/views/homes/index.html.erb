@@ -11,7 +11,7 @@
         <% if @last_three_rounds %>
           <ul>
             <% @last_three_rounds.each do |player_round| %>
-              <li style="color:white;"><%= player_round.user.name %> played <%= player_round.round.course.name %> and shot <%= player_round.score %> over <%= player_round.hole_count %> holes!</li>
+              <li style="color:white;"><%= player_round.user.full_name %> played <%= player_round.round.course.name %> and shot <%= player_round.score %> over <%= player_round.hole_count %> holes!</li>
             <% end %>
           </ul>
         <% end %>

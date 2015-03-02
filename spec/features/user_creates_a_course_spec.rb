@@ -12,7 +12,7 @@ feature "user creates a course", %{
   [ ] When unsuccessful, I should see an error message and the form.
   [ ] A user must be logged in to create a course, if not, should see error.
 } do
-
+  
   let (:test_user) do
     FactoryGirl.create(:user)
   end

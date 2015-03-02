@@ -11,7 +11,7 @@
         <%= @round.course.street_address %><br>
         <%= @round.course.city %>, <%= @round.course.state %> <%= @round.course.zip_code %>
       </li>
-      <li class="description">Organized By: <%= link_to "#{@round.user.name}", user_path(@round.user) %></li>
+      <li class="description">Organized By: <%= link_to "#{@round.user.full_name}", user_path(@round.user) %></li>
     </ul>
   </div>
   <div class="small-8 columns">
