@@ -1,59 +1,70 @@
-
-<div class="row cover">
-  <div class="small-3 columns" id="reserve_for_avatar">
-
-  </div>
-  <div class="small-9 columns">
-    <h1 style="text-align: right;"><%= @user.name %></h1>
-    <h4 style="text-align: right;">Email: <%= @user.email %></h4>
-  </div>
-</div>
-
-<div class="row">
-
-</div>
-
-<div class="row">
-  <div class="small-12 columns">
-    <div class="small-6 columns">
-      <h3 class="text-center">Upcoming Rounds</h3>
-      <% if @user.upcoming_rounds.empty? %>
-        <h6 class="text-center">You do not have any upcoming rounds</h6>
+<div class="cover" style='background:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url(<%= @user.cover_image.to_s %>);background-size:cover;background-position: 50% 50%;background-repeat: no-repeat;'>
+  <div class="row">
+    <div class="large-4 medium-4 hide-for-small columns">
+      <% if @user.profile_photo.url %>
+        <%= image_tag @user.profile_photo.url, class: "avatar" %>
       <% else %>
-        <%= render "upcoming" %>
+        <%= image_tag "http://placehold.it/350&text=Profile+Photo", class: "avatar" %>
       <% end %>
     </div>
-    <div class="small-6 columns">
-      <h3 class="text-center">Unscored Rounds</h3>
-      <% if @user.not_scored_rounds.empty? %>
-        <h6 class="text-center">User does not have any unscored rounds</h6>
-      <% else %>
-        <%= render "recently" %>
+    <div class="large-8 medium-8 columns">
+      <h1 class="page-title" style="text-align: right; margin-top:40px;"><%= @user.full_name %></h1>
+      <h4 style="text-align: right; color: white;">Email: <%= @user.email %></h4>
+      <% if @user == current_user %>
+        <%= link_to "Edit Profile", edit_user_registration_path(@user), class: "button small radius right" %>
       <% end %>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="small-12 columns">
-      <div class="small-6 columns">
-        <h3 class="text-center">Scored Rounds</h3>
-        <% if @user.player_rounds.empty? %>
-          <h6 class="text-center">You don't have any scored rounds</h6>
+<div class="panel">
+
+  <div class="row">
+
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="large-6 columns">
+        <h3 class="text-center">Upcoming Rounds</h3>
+        <% if @user.upcoming_rounds.empty? %>
+          <h6 class="text-center">You do not have any upcoming rounds</h6>
         <% else %>
-          <%= render "scored" %>
+          <%= render "upcoming" %>
         <% end %>
       </div>
-      <div class="small-6 columns">
-        <h4 class="text-center">Handicap:</h4>
-        <% if @user.handicap.class == String %>
-          <div class="progress round">
-            <span class="meter" style="width:<%= @user.player_rounds.count*20 %>%"></span>
-          </div>
-          <p class="text-center"><%= @user.handicap %></p>
+      <div class="large-6 columns">
+        <h3 class="text-center">Unscored Rounds</h3>
+        <% if @user.not_scored_rounds.empty? %>
+          <h6 class="text-center">User does not have any unscored rounds</h6>
         <% else %>
-          <h2 class="text-center"><%= @user.handicap %></h2>
+          <%= render "recently" %>
         <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+        <div class="large-6 columns">
+          <h3 class="text-center">Scored Rounds</h3>
+          <% if @user.player_rounds.empty? %>
+            <h6 class="text-center">You don't have any scored rounds</h6>
+          <% else %>
+            <%= render "scored" %>
+          <% end %>
+        </div>
+        <div class="large-6 columns">
+          <h4 class="text-center">Handicap:</h4>
+          <% if @user.handicap.class == String %>
+            <div class="progress round">
+              <span class="meter" style="width:<%= @user.player_rounds.count*20 %>%"></span>
+            </div>
+            <p class="text-center"><%= @user.handicap %></p>
+          <% else %>
+            <h2 class="text-center"><%= @user.handicap %></h2>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

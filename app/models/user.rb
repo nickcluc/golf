@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  mount_uploader :cover_image, CoverImageUploader
+  mount_uploader :profile_photo, ProfilePhotoUploader
   has_many :rounds
   has_many :player_rounds
   has_many :courses
@@ -7,6 +9,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def full_name
+    first_name + " " + last_name
+  end
 
   def not_scored_rounds
     not_scored = []
