@@ -10,6 +10,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
+/public/uploads/tmp
 /tmp
 .env
 /doc
