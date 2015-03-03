@@ -23,11 +23,11 @@ feature "user edits their user information", %{
 
     expect(page).to have_content "Edit Player Profile"
 
-    fill_in "First Name", with: "John"
-    fill_in "Last Name", with: "Clucas"
+    fill_in "First name", with: "John"
+    fill_in "Last name", with: "Clucas"
     fill_in "Current password", with: test_user.password
 
-    click_on "Save Player Information"
+    click_on "Update Player Information"
 
     expect(page).to have_content "Your account has been updated successfully."
 

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-  <% unless current_page?(root_path) %>
+  <% unless current_page?(root_path) || (request.request_method == "POST" && request.original_url == "http://localhost:3000/users") %>
     <nav class="top-bar">
       <ul class="title-area">
         <li class="name">
