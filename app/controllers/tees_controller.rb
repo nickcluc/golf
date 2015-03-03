@@ -8,7 +8,9 @@ class TeesController < ApplicationController
       flash[:notice] = "Tee created successfully!"
       redirect_to course_path(@tee.course)
     else
-      render :new
+      @course = @tee.course
+      @new_tee = @tee
+      render 'courses/show'
     end
   end
 

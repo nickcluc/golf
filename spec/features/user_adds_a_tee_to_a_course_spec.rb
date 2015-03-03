@@ -23,7 +23,6 @@ feature "user adds a tee to a course", %{
 
     expect(page).to have_content "Tees"
 
-    fill_in "Name", with: test_tee.name
     fill_in "Color", with: test_tee.color
     fill_in "Rating", with: test_tee.rating
     fill_in "Slope", with: test_tee.slope

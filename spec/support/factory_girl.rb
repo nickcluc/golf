@@ -21,7 +21,6 @@ FactoryGirl.define do
   end
 
   factory :tee do
-    name "White"
     color "White"
     slope 124
     rating 68.7

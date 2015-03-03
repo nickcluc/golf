@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "returns a user's full name" do
+    user = FactoryGirl.create(:user)
+    user.full_name.should == "Nick Clucas"
+  end
 end
