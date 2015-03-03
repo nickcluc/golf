@@ -1,4 +1,4 @@
-<div class="module">
+<div class="module" >
   <br>
   <div class="row" data-equalizer>
     <div class="small-8 columns" data-equalizer-watch>
@@ -16,6 +16,9 @@
           </ul>
         <% end %>
       <% end %>
+      <div class="row">
+        <blockquote class="bottom">The most important shot in golf is the next one.<cite>Ben Hogan</cite></blockquote>
+      </div>
     </div>
     <div class="small-4 columns" data-equalizer-watch>
       <% if current_user %>
@@ -28,25 +31,16 @@
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "button radius" %>
       <% else %>
         <div class="row">
-          <!-- <div class="button radius" id="sign-in-button">
-            Sign In
-          </div> -->
           <div id="sign-in-form">
             <%= render "devise/sessions/new" %>
           </div>
         </div>
         <div class="row">
-          <!-- <div class="button radius" id="sign-up-button">
-            Sign Up
-          </div> -->
           <div id="sign-up-form">
             <%= render "devise/registrations/new" %>
           </div>
         </div>
       <% end %>
     </div>
-  </div>
-  <div class="row">
-    <blockquote class="bottom">The most important shot in golf is the next one.<cite>Ben Hogan</cite></blockquote>
   </div>
 </div>
