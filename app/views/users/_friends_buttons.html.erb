@@ -1,0 +1,34 @@
+<% if @user == current_user %>
+    <div class="row">
+      <%= link_to "Edit Profile", edit_user_registration_path(@user), class: "button small radius right" %>
+    </div>
+    <% unless @pending_friendships.empty? %>
+    <div class="button small radius right" id="friend-request-button">
+      New Friend Request!
+    </div>
+    <div class="panel"  id="friend-request-list">
+      <ul class="no-bullet">
+        <% @pending_friendships.each do |pending| %>
+          <li>
+            <%= image_tag pending.user.profile_photo, size:"60x60" %>
+            <%= pending.user.full_name %> <%= link_to "Accept", friendship_path(accepted: true, user_id: pending.user.id, id: pending.id), method: :put %> | <%= link_to "Reject" %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% else %>
+  <% if signed_in? %>
+    <% if current_user.friendship_pending_with(@user) %>
+      <div class="button secondary inactive">
+        Friendship Pending
+      </div>
+    <% elsif current_user.friends.include?(@user) %>
+      <div class="button secondary inactive">
+        Already Friends
+      </div>
+    <% else %>
+      <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post, class: "button radius right" %>
+    <% end %>
+  <% end %>
+<% end %>

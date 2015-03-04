@@ -10,11 +10,26 @@
 
 </head>
 <body>
-  <% unless current_page?(root_path) || (request.request_method == "POST" && request.original_url == "http://localhost:3000/users") %>
+  <% unless current_page?(root_path) %>
     <nav class="top-bar">
       <ul class="title-area">
         <li class="name">
           <h1><a href="/">Golf</a></h1>
+        </li>
+      </ul>
+      <ul class="left">
+      <!-- Search | has-form wrapper -->
+        <li class="has-form">
+          <%= form_tag users_path, method: :get do %>
+            <div class="row collapse">
+              <div class="small-8 columns">
+                <%= text_field_tag :player_query, nil, placeholder: "Search Users", id: "player_search" %>
+              </div>
+              <div class="small-4 columns">
+                <%= submit_tag "Search", { class: "button expand" } %>
+              </div>
+            </div>
+          <% end %>
         </li>
       </ul>
 

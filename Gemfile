@@ -18,6 +18,7 @@ gem 'rails-erd'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'searchkick'
 gem 'rails_12factor', group: :production
 gem 'coveralls', require: false, group: :test
 
