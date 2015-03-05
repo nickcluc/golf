@@ -5,10 +5,14 @@ class User < ActiveRecord::Base
   has_many :player_rounds
   has_many :courses
   has_many :tees
+  has_many :friendships
+  has_many :friends, through: :friendships
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  searchkick
 
   def full_name
     if first_name && last_name
@@ -92,5 +96,13 @@ class User < ActiveRecord::Base
       end
     end
     upcoming_course_rounds
+  end
+
+  def accepted_friends
+    friendships.where(accepted: true)
+  end
+
+  def friendship_pending_with(other_user)
+    friendships.find_by(accepted:false, friend_id: other_user.id)
   end
 end

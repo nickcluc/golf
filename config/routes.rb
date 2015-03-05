@@ -3,17 +3,23 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
+
+  resources :friendships, only: [:create, :update, :destroy]
 
   resources :courses, only: [:new, :index, :create, :show]
 
-  resources :courses, only: [:show] do
-    resources :tees, only: [:create]
+  resources :users, only: :show do
+    resources :friendships, only: :index
+  end
+
+  resources :courses, only: :show do
+    resources :tees, only: :create
   end
 
   resources :rounds, only: [:new, :index, :create, :show]
 
-  resources :rounds, only: [:show] do
+  resources :rounds, only: :show do
     resources :player_rounds, only: [:index, :create]
   end
 end
