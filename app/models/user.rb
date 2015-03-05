@@ -105,16 +105,4 @@ class User < ActiveRecord::Base
   def friendship_pending_with(other_user)
     friendships.find_by(accepted:false, friend_id: other_user.id)
   end
-
-  def friends
-    friends_arr = []
-    Friendship.where("friend_id = #{self.id} OR user_id = #{self.id}").where(accepted: true).each do |friend|
-      if friend.user == self
-        friends_arr << friend.friend
-      elsif friend.friend == self
-        friends_arr << friend.user
-      end
-    end
-    friends_arr
-  end
 end

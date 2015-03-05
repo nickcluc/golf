@@ -7,9 +7,13 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def index
+  end
+
   def update
     @friendship = Friendship.find(params[:id])
     if @friendship.update_attributes(accepted: true)
+      Friendship.create(user: @friendship.friend, friend_id: @friendship.user_id, accepted: true)
       flash[:notice] = "Friendship Accepted"
       redirect_to user_path(current_user)
     else

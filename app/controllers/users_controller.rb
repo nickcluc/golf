@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @friends = Friendship.where("friend_id = #{@user.id} OR user_id = #{@user.id}").where(accepted: true)
-    @pending_friendships = Friendship.where(friend_id: current_user.id, accepted: false)
+    if current_user
+      @pending_friendships = Friendship.where(friend_id: current_user.id, accepted: false)
+    end
   end
 end
