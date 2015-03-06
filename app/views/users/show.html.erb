@@ -22,7 +22,9 @@
       <ul class="small-block-grid-3">
         <% @user.friends.last(6).each do |friend| %>
           <li class="friend-listing">
-            <%= link_to image_tag(friend.profile_photo, size: "80")+"#{friend.full_name}", user_path(friend) %>
+            <% if friend.friends.include?(current_user) || friend == current_user %>
+              <%= link_to image_tag(friend.profile_photo, size: "80")+"#{friend.full_name}", user_path(friend) %>
+            <% end %>
           </li>
         <% end %>
       </ul>

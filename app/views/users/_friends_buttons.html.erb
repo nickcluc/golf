@@ -1,7 +1,10 @@
 <% if @user == current_user %>
-  <div class="row">
-    <%= link_to "Edit Profile", edit_user_registration_path(@user), class: "button small radius right" %>
-  </div>
+<ul class="no-bullet right">
+  <li>
+    <div class="row">
+      <%= link_to "Edit Profile", edit_user_registration_path(@user), class: "button small radius right" %>
+    </div>
+  </li>
   <% unless @pending_friendships.empty? %>
     <div class="row">
       <div class="small-9 columns">
@@ -11,7 +14,7 @@
               <% @pending_friendships.each do |pending| %>
                 <li>
                   <%= image_tag pending.user.profile_photo, size:"60x60" %>
-                  <%= pending.user.full_name %> <%= link_to "Accept", friendship_path(accepted: true, user_id: pending.user.id, id: pending.id), method: :put %> | <%= link_to "Reject" %>
+                  <%= pending.user.full_name %> <%= link_to "Accept", friendship_path(accepted: true, user_id: pending.user.id, id: pending.id), method: :put %> | <%= link_to "Ignore", friendship_path(ignored: true, id: pending.id), method: :put %>
                 </li>
               <% end %>
             <% end %>
@@ -19,24 +22,36 @@
         </div>
       </div>
       <div class="small-3 columns">
+
         <div class="button small radius right" id="friend-request-button">
           New Friend Request!
         </div>
       </div>
     </div>
   <% end %>
+  </ul>
 <% else %>
-  <% if signed_in? %>
-    <% if current_user.friendship_pending_with(@user) %>
-      <div class="button small radius disabled right">
-        Friendship Pending
-      </div>
-    <% elsif current_user.friends.include?(@user) %>
-      <div class="button small radius disabled right">
-        Already Friends
-      </div>
-    <% else %>
-      <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post, class: "button radius right" %>
+    <% if signed_in? %>
+      <ul class="no-bullet right">
+        <% if current_user.friendship_pending_with(@user) %>
+          <li>
+            <div class="round secondary label right">
+              Friendship Pending
+            </div>
+            <br>
+          </li>
+        <% elsif current_user.friends.include?(@user) %>
+          <li>
+            <button id="friends-button" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button small dropdown">Friends</button><br>
+              <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+                <li><%= link_to "Unfriend", friendship_path(@friendship), method: :delete, data: { confirm: "Are you sure you want to unfriend #{@user.first_name}?"} %></li>
+              </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post, class: "button radius right" %>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
-  <% end %>
 <% end %>
