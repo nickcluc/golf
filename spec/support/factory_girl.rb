@@ -45,4 +45,7 @@ FactoryGirl.define do
     tee
   end
 
+  factory :friendship do
+  end
+
 end

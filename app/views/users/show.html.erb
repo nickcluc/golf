@@ -22,44 +22,50 @@
       <ul class="small-block-grid-3">
         <% @user.friends.last(6).each do |friend| %>
           <li class="friend-listing">
-            <%= link_to image_tag(friend.profile_photo, size: "80")+"#{friend.full_name}", user_path(friend) %>
+            <% if friend.friends.include?(current_user) || friend == current_user %>
+              <%= link_to image_tag(friend.profile_photo, size: "80")+"#{friend.full_name}", user_path(friend) %>
+            <% end %>
           </li>
         <% end %>
       </ul>
-      <p>
-        <%= link_to "View all...", user_friendships_path(params[:id]) %>
-      </p>
-    </div>
-  </div>
-  <div class="large-7 columns">
-    <div class="panel">
-      <h3 class="text-center">Upcoming Rounds</h3>
-      <% if @user.upcoming_rounds.empty? %>
-        <h6 class="text-center">You do not have any upcoming rounds</h6>
-      <% else %>
-        <%= render "upcoming" %>
-      <% end %>
-      <h3 class="text-center">Unscored Rounds</h3>
-      <% if @user.not_scored_rounds.empty? %>
-        <h6 class="text-center">User does not have any unscored rounds</h6>
-      <% else %>
-        <%= render "recently" %>
-      <% end %>
-      <h3 class="text-center">Scored Rounds</h3>
-      <% if @user.player_rounds.empty? %>
-        <h6 class="text-center">You don't have any scored rounds</h6>
-      <% else %>
-        <%= render "scored" %>
-      <% end %>
-      <h4 class="text-center">Handicap:</h4>
-      <% if @user.handicap.class == String %>
-        <div class="progress round">
-          <span class="meter" style="width:<%= @user.player_rounds.count*20 %>%"></span>
+      <% if @user.friends.include?(current_user) || @user == current_user %>
+            <p>
+              <%= link_to "View all...", user_friendships_path(params[:id]) %>
+            </p>
+          </div>
         </div>
-        <p class="text-center"><%= @user.handicap %></p>
+        <div class="large-7 columns">
+          <div class="panel">
+            <h3 class="text-center">Upcoming Rounds</h3>
+            <% if @user.upcoming_rounds.empty? %>
+              <h6 class="text-center">You do not have any upcoming rounds</h6>
+            <% else %>
+              <%= render "upcoming" %>
+            <% end %>
+            <h3 class="text-center">Unscored Rounds</h3>
+            <% if @user.not_scored_rounds.empty? %>
+              <h6 class="text-center">User does not have any unscored rounds</h6>
+            <% else %>
+              <%= render "recently" %>
+            <% end %>
+            <h3 class="text-center">Scored Rounds</h3>
+            <% if @user.player_rounds.empty? %>
+              <h6 class="text-center">You don't have any scored rounds</h6>
+            <% else %>
+              <%= render "scored" %>
+            <% end %>
+            <h4 class="text-center">Handicap:</h4>
+            <% if @user.handicap.class == String %>
+              <div class="progress round">
+                <span class="meter" style="width:<%= @user.player_rounds.count*20 %>%"></span>
+              </div>
+              <p class="text-center"><%= @user.handicap %></p>
+            <% else %>
+              <h2 class="text-center"><%= @user.handicap %></h2>
+            <% end %>
+          </div>
+        </div>
       <% else %>
-        <h2 class="text-center"><%= @user.handicap %></h2>
+        </div>
       <% end %>
-    </div>
-  </div>
 </div>
