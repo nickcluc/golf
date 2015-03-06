@@ -38,14 +38,12 @@
           <div class="panel">
             <h3 class="text-center">Upcoming Rounds</h3>
             <% if @user.upcoming_rounds.empty? %>
-              <h6 class="text-center">You do not have any upcoming rounds</h6>
+              <h6 class="text-center">You do not have any upcoming rounds. <%= link_to "Create One!", new_round_path %></h6>
             <% else %>
               <%= render "upcoming" %>
             <% end %>
-            <h3 class="text-center">Unscored Rounds</h3>
-            <% if @user.not_scored_rounds.empty? %>
-              <h6 class="text-center">User does not have any unscored rounds</h6>
-            <% else %>
+            <% unless @user.not_scored_rounds.empty? %>
+              <h3 class="text-center">Unscored Rounds</h3>
               <%= render "recently" %>
             <% end %>
             <h3 class="text-center">Scored Rounds</h3>
