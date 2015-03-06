@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     if params[:player_query].present?
       @users = User.search(params[:player_query])
