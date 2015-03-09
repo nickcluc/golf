@@ -14,7 +14,8 @@
               <% @pending_friendships.each do |pending| %>
                 <li>
                   <%= image_tag pending.user.profile_photo, size:"60x60" %>
-                  <%= pending.user.full_name %> <%= link_to "Accept", friendship_path(accepted: true, user_id: pending.user.id, id: pending.id), method: :put %> | <%= link_to "Ignore", friendship_path(ignored: true, id: pending.id), method: :put %>
+                  <%= pending.user.full_name %>
+                  <%= link_to "Accept", friendship_path(accepted: true, user_id: pending.user.id, id: pending.id), method: :put %> | <%= link_to "Ignore", friendship_path(ignored: true, id: pending.id), method: :put %>
                 </li>
               <% end %>
             <% end %>

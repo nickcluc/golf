@@ -18,4 +18,17 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to "Add a new round", new_round_path %>
+<% if @user == current_user %>
+  <a href="#" data-reveal-id="new-round-modal">Add A New Tee Time</a>
+<% end %>
+
+
+<div id="new-round-modal" class="reveal-modal" data-reveal>
+  <%= render "rounds/new" %>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="secondModal" class="reveal-modal" data-reveal>
+  <%= render "courses/new" %>
+  <a class="close-reveal-modal">&#215;</a>
+</div>

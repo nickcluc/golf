@@ -32,7 +32,10 @@ feature "User removes friends", %{
 
     click_link "Unfriend"
     visit user_path(@test_user_two)
-    expect(page).to_not have_content @test_user_one.full_name
+
+    within("div#friends") do
+      expect(page).to_not have_content @test_user_one.full_name
+    end
 
     visit user_path(@test_user_one)
     expect(page).to_not have_content @test_user_two.full_name
@@ -47,9 +50,8 @@ feature "User removes friends", %{
     expect(page).to_not have_content @test_user_one.full_name
 
     visit user_path(@test_user_one)
-    expect(page).to_not have_content @test_user_two.full_name
-
-    visit user_friendships_path(@test_user_one)
-    expect(page).to_not have_content @test_user_two.full_name
+    within("div#friends") do
+      expect(page).to_not have_content @test_user_two.full_name
+    end
   end
 end

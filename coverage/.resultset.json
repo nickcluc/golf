@@ -19,8 +19,8 @@
         1,
         null,
         1,
-        116,
-        116,
+        203,
+        203,
         null,
         0,
         null,
@@ -158,7 +158,7 @@
         null,
         1,
         null,
-        3,
+        49,
         null,
         null,
         null,
@@ -321,6 +321,8 @@
       "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/users_controller.rb": [
         1,
         1,
+        null,
+        1,
         0,
         0,
         null,
@@ -329,6 +331,8 @@
         null,
         null,
         1,
+        75,
+        75,
         75,
         75,
         75,
@@ -496,8 +500,8 @@
         null,
         null,
         1,
-        4,
-        4,
+        3,
+        3,
         null,
         null,
         1,
@@ -580,6 +584,6 @@
         null
       ]
     },
-    "timestamp": 1425620477
+    "timestamp": 1425908909
   }
 }
