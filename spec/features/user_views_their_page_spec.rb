@@ -20,7 +20,7 @@ feature "User views their page", %{
     visit user_path(test_user)
     expect(page).to have_content test_user.full_name
     expect(page).to have_content test_user.email
-    expect(page).to have_content "Upcoming Rounds"
+    expect(page).to have_content "Upcoming Tee Times"
     expect(page).to have_content @future_round.round_date.strftime("%m/%d/%Y")
     expect(page).to have_content @past_round.round_date.strftime("%m/%d/%Y")
     expect(page).to have_content "Unscored Rounds"

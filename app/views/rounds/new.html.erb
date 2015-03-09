@@ -2,5 +2,6 @@
   <%= f.input :round_date, as: :string, label: "Date", input_html: { id: "round_date" } %>
   <%= f.input :tee_time, as: :string, label: "Tee Time", input_html: { id:"tee_time" } %>
   <%= f.association :course %>
+  <p><a href="#" data-reveal-id="secondModal" class="secondary button"></a>Add A New Course</p>
   <%= f.button :submit %>
 <% end %>

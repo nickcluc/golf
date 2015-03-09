@@ -1,16 +1,18 @@
-<div class="cover" style='background:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url(<%= @user.cover_image.to_s %>);background-size:cover;background-position: 50% 50%;background-repeat: no-repeat;'>
-  <div class="row">
-    <div class="large-4 medium-4 hide-for-small columns">
-      <% if @user.profile_photo.url %>
-        <%= image_tag @user.profile_photo.url, class: "avatar", alt: "#{@user.full_name}'s profile photo" %>
-      <% else %>
-        <%= image_tag "http://placehold.it/350&text=Profile+Photo", class: "avatar", alt: "placeholder" %>
-      <% end %>
-    </div>
-    <div class="large-8 medium-8 columns">
-      <h1 class="page-title" style="text-align: right; margin-top:40px;"><%= @user.full_name %></h1>
-      <h4 style="text-align: right; color: white;">Email: <%= @user.email %></h4>
-      <%= render "friends_buttons" %>
+
+  <div class="cover" style='background:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url(<%= @user.cover_image.to_s %>);background-size:cover;background-position: 50% 50%;background-repeat: no-repeat;'>
+    <div class="row">
+      <div class="large-4 medium-4 hide-for-small columns">
+        <% if @user.profile_photo.url %>
+          <%= image_tag @user.profile_photo.url, class: "avatar", size: "200x200", alt: "#{@user.full_name}'s profile photo" %>
+        <% else %>
+          <%= image_tag "http://placehold.it/350&text=Profile+Photo", class: "avatar", alt: "placeholder" %>
+        <% end %>
+      </div>
+      <div class="large-8 medium-8 columns">
+        <h1 class="page-title" style="text-align: right; margin-top:40px;"><%= @user.full_name %></h1>
+        <h4 style="text-align: right; color: white;">Email: <%= @user.email %></h4>
+        <%= render "friends_buttons" %>
+      </div>
     </div>
   </div>
 </div>
@@ -18,52 +20,31 @@
 <div class="row">
   <div class="large-5 columns">
     <div class="panel">
-      <h3><%= @user.first_name %>'s Friends</h3>
-      <ul class="small-block-grid-3">
-        <% @user.friends.last(6).each do |friend| %>
-          <li class="friend-listing">
-            <% if friend.friends.include?(current_user) || friend == current_user %>
-              <%= link_to image_tag(friend.profile_photo, size: "80")+"#{friend.full_name}", user_path(friend) %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-      <% if @user.friends.include?(current_user) || @user == current_user %>
-            <p>
-              <%= link_to "View all...", user_friendships_path(params[:id]) %>
-            </p>
-          </div>
-        </div>
-        <div class="large-7 columns">
-          <div class="panel">
-            <h3 class="text-center">Upcoming Rounds</h3>
-            <% if @user.upcoming_rounds.empty? %>
-              <h6 class="text-center">You do not have any upcoming rounds. <%= link_to "Create One!", new_round_path %></h6>
-            <% else %>
-              <%= render "upcoming" %>
-            <% end %>
-            <% unless @user.not_scored_rounds.empty? %>
-              <h3 class="text-center">Unscored Rounds</h3>
-              <%= render "recently" %>
-            <% end %>
-            <h3 class="text-center">Scored Rounds</h3>
-            <% if @user.player_rounds.empty? %>
-              <h6 class="text-center">You don't have any scored rounds</h6>
-            <% else %>
-              <%= render "scored" %>
-            <% end %>
-            <h4 class="text-center">Handicap:</h4>
-            <% if @user.handicap.class == String %>
-              <div class="progress round">
-                <span class="meter" style="width:<%= @user.player_rounds.count*20 %>%"></span>
-              </div>
-              <p class="text-center"><%= @user.handicap %></p>
-            <% else %>
-              <h2 class="text-center"><%= @user.handicap %></h2>
-            <% end %>
-          </div>
-        </div>
+      <%= render "handicap" %>
+    </div>
+    <div class="panel" id="friends">
+      <%= render "friends" %>
+    </div>
+    <div class="panel">
+      <h3 class="text-center">Upcoming Tee Times</h3>
+      <% if @user == current_user && @user.upcoming_rounds.empty? %>
+          <h6 class="text-center">You do not have any upcoming rounds.<a href="#" data-reveal-id="new-round-modal">Click Me For A Modal</a> <%= link_to "Create One!", new_round_path %></h6>
       <% else %>
-        </div>
+          <%= render "upcoming" %>
       <% end %>
-</div>
+      <% unless @user.not_scored_rounds.empty? %>
+        <h3 class="text-center">Unscored Rounds</h3>
+        <%= render "recently" %>
+      <% end %>
+      <% unless @user.player_rounds.empty? %>
+      <h3 class="text-center">Scored Rounds</h3>
+        <%= render "scored" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="large-7 columns">
+    <div class="panel">
+      <h3>Smack Talk</h3>
+      <%= render "feed" %>
+    </div>
+  </div>

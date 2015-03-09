@@ -1,0 +1,9 @@
+<h2 class="text-center">Add A New Round</h2>
+
+  <%= simple_form_for @round do |f| %>
+    <%= f.input :round_date, as: :string, label: "Date", input_html: { id: "round_date" } %>
+    <%= f.input :tee_time, as: :string, label: "Tee Time", input_html: { id:"tee_time" } %>
+    <%= f.association :course %>
+    <p><a href="#" data-reveal-id="secondModal" class="secondary small button radius">Add A New Course</a></p>
+    <%= f.button :submit %>
+  <% end %>
