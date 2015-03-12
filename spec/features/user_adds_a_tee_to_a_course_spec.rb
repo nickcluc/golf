@@ -29,7 +29,7 @@ feature "user adds a tee to a course", %{
     fill_in "Yardage", with: test_tee.yardage
 
     click_on "Create Tee"
-
+    
     expect(page).to have_content "Tee created successfully!"
   end
 end

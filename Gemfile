@@ -21,6 +21,7 @@ gem 'fog'
 gem 'searchkick'
 gem 'rails_12factor', group: :production
 gem 'coveralls', require: false, group: :test
+gem 'simplecov', require: false, group: :test
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
@@ -34,6 +35,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'shoulda-matchers', require: false
   gem 'railroady'
+  gem 'quiet_assets'
 end
 
 gem 'sdoc', '~> 0.4.0', group: :doc

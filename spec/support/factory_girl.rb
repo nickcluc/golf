@@ -27,6 +27,7 @@ FactoryGirl.define do
     yardage 5795
 
     course
+    user
   end
 
   factory :round do
@@ -43,9 +44,6 @@ FactoryGirl.define do
 
     round
     tee
+    user
   end
-
-  factory :friendship do
-  end
-
 end

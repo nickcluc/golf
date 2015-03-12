@@ -5,13 +5,13 @@
       <%= link_to "Edit Profile", edit_user_registration_path(@user), class: "button small radius right" %>
     </div>
   </li>
-  <% unless @pending_friendships.empty? %>
+  <% unless @user.pending_friendships(current_user).empty? %>
     <div class="row">
       <div class="small-9 columns">
         <div class="panel"  id="friend-request-list">
           <ul class="no-bullet">
             <% if signed_in? %>
-              <% @pending_friendships.each do |pending| %>
+              <% @user.pending_friendships(current_user).each do |pending| %>
                 <li>
                   <%= image_tag pending.user.profile_photo, size:"60x60" %>
                   <%= pending.user.full_name %>

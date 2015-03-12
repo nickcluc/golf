@@ -10,9 +10,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:rounds, :player_rounds).find(params[:id])
     @round = Round.new
     @course = Course.new
+    @post = Post.new
+    @wall_posts = Post.where(recipient: @user)
     @friendship = current_user.friendships.where("user_id = #{@user.id} OR friend_id = #{@user.id}").first
     if current_user
       @pending_friendships = Friendship.where(friend_id: current_user.id, accepted: false, ignored: false)
