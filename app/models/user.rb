@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
   mount_uploader :cover_image, CoverImageUploader
   mount_uploader :profile_photo, ProfilePhotoUploader
-  has_many :rounds
+  has_many :rounds, -> { includes(:player_rounds) }
   has_many :player_rounds
   has_many :courses
   has_many :tees
   has_many :friendships
   has_many :friends, through: :friendships
+  has_many :posts, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -75,7 +76,7 @@ class User < ActiveRecord::Base
         n = 10
       end
       n.times do
-        usable_differentials << differentials.pop
+        usable_differentials << differentials.shift
       end
       hcap_sum = usable_differentials.inject(0) do |sum, number|
         sum + number
@@ -104,5 +105,9 @@ class User < ActiveRecord::Base
 
   def friendship_pending_with(other_user)
     friendships.find_by(accepted:false, friend_id: other_user.id)
+  end
+
+  def pending_friendships(current_user)
+    Friendship.where(friend_id: current_user.id, accepted: false, ignored: false)
   end
 end

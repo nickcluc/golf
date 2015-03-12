@@ -11,11 +11,15 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     resources :friendships, only: :index
+    resources :posts, only: :create
+    resources :rounds, only: :create
+    resources :courses, only: :create
   end
 
   resources :courses, only: :show do
     resources :tees, only: :create
   end
+
 
   resources :rounds, only: [:new, :index, :create, :show]
 

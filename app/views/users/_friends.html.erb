@@ -3,11 +3,12 @@
   <% @user.friends.last(6).each do |friend| %>
     <li class="friend-listing">
       <% if friend.friends.include?(current_user) || friend == current_user %>
-        <%= link_to image_tag(friend.profile_photo, size: "80")+"#{friend.full_name}", user_path(friend) %>
+        <%= link_to image_tag(friend.profile_photo, size: "80"), user_path(friend) %><br>
+        <%= link_to friend.full_name, user_path(friend) %>
       <% end %>
     </li>
   <% end %>
 </ul>
 <p>
-  <%= link_to "View all...", user_friendships_path(params[:id]) %>
+  <%= link_to "View all...", user_friendships_path(@user.id) %>
 </p>

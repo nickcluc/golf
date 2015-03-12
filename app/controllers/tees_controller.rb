@@ -3,6 +3,7 @@ class TeesController < ApplicationController
 
   def create
     @tee = Tee.new(tee_params)
+    @tee.user = current_user
     @tee.course = Course.find(params[:course_id])
     if @tee.save
       flash[:notice] = "Tee created successfully!"

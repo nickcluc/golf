@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="small-8-centered columns">
-  <%= simple_form_for @course do |f| %>
+  <%= simple_form_for [@user, @course] do |f| %>
     <%= f.input :name %>
     <%= f.input :street_address, label: "Street Address" %>
     <%= f.input :city %>

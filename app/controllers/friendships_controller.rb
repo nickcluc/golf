@@ -4,6 +4,9 @@ class FriendshipsController < ApplicationController
     if @friendship.save
       flash[:notice] = "Friend Request to #{User.find(params[:friend_id]).full_name} Sent!"
       redirect_to user_path(params[:friend_id])
+    else
+      @user = User.find(params[:friend_id])
+      render "users/show"
     end
   end
 
@@ -38,15 +41,6 @@ class FriendshipsController < ApplicationController
       @friendship.update_attributes(ignored: params[:ignored])
       flash[:notice] = "Friend Request From #{@friendship.user.full_name} Ignored"
       redirect_to user_path(current_user)
-    else
-      flash[:alert] = "An error has occurred"
-      render "user/show"
     end
-  end
-
-  private
-
-  def friendship_params
-    params.require(:friendship).permit(:user_id, :friend_id)
   end
 end

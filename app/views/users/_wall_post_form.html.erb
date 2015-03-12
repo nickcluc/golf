@@ -1,0 +1,4 @@
+<%= simple_form_for [@user, @post] do |f| %>
+  <%= f.input :body, label: "Wall Post" %>
+  <%= f.submit "Post", class: "button tiny radius" %>
+<% end %>

@@ -1,3 +1,5 @@
+require "rails_helper"
+
 feature "user edits their user information", %{
   As a user,
   I want to edit my personal information,

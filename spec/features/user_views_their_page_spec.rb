@@ -29,7 +29,7 @@ feature "User views their page", %{
     scenario "user sees their handicap based on rounds count" do
       sign_in_as(test_user)
       i.times do
-        FactoryGirl.create(:player_round, user_id: test_user.id)
+        FactoryGirl.create(:player_round, user: test_user)
       end
       visit user_path(test_user)
       expect(page).to have_content test_user.handicap
