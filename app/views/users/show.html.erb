@@ -5,7 +5,7 @@
       <% if @user.profile_photo.url %>
         <%= image_tag @user.profile_photo.url, class: "avatar", size: "200x200", alt: "#{@user.full_name}'s profile photo" %>
       <% else %>
-        <%= image_tag "http://placehold.it/350&text=Profile+Photo", class: "avatar", alt: "placeholder" %>
+        <%= image_tag "http://placehold.it/200&text=Profile+Photo", class: "avatar", alt: "placeholder" %>
       <% end %>
     </div>
     <div class="large-8 medium-8 columns">
@@ -25,12 +25,11 @@
       <%= render "users/friends" %>
     </div>
     <div class="panel">
-      <h3 class="text-center">Upcoming Tee Times</h3>
       <% if @user == current_user && @user.upcoming_rounds.empty? %>
-          <h6 class="text-center">You do not have any upcoming rounds.<a href="#" data-reveal-id="new-round-modal">Click Me For A Modal</a> <%= link_to "Create One!", new_round_path %></h6>
-      <% else %>
-          <%= render "users/upcoming" %>
+        <h3 class="text-center">Upcoming Tee Times</h3>
+        <h6 class="text-center">You do not have any upcoming rounds.</h6>
       <% end %>
+        <%= render "users/upcoming" %>
       <% unless @user.not_scored_rounds.empty? %>
         <h3 class="text-center">Unscored Rounds</h3>
         <%= render "users/recently" %>
