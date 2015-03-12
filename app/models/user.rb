@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def accepted_friends
-    friendships.where(accepted: true)
+    friendships.where(user_id: self.id, accepted: true) || friendships.where(friend_id: self.id, accepted: true)
   end
 
   def friendship_pending_with(other_user)

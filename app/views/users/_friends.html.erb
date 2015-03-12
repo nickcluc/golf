@@ -1,14 +1,17 @@
 <h3><%= @user.first_name %>'s Friends</h3>
 <ul class="large-block-grid-3">
-  <% @user.friends.last(6).each do |friend| %>
-    <li class="friend-listing">
-      <% if friend.friends.include?(current_user) || friend == current_user %>
-        <%= link_to image_tag(friend.profile_photo, size: "80"), user_path(friend) %><br>
-        <%= link_to friend.full_name, user_path(friend) %>
+  <% @user.accepted_friends.last(6).each do |friendship| %>
+    <% if friendship.user == @user %>
+      <li class="friend-listing">
+        <%= link_to image_tag(friendship.friend.profile_photo, size: "75"), user_path(friendship.friend) %><br>
+        <%= link_to friendship.friend.full_name, user_path(friendship.friend) %>
+      </li>
+    <% elsif friendship.friend == @user %>
+      <li class="friend-listing">
+        <%= link_to image_tag(friendship.user.profile_photo, size: "75"), user_path(friendship.user) %><br>
+        <%= link_to friendship.user.full_name, user_path(friendship.user) %>
+      </li>
       <% end %>
-    </li>
   <% end %>
 </ul>
-<p>
-  <%= link_to "View all...", user_friendships_path(@user.id) %>
-</p>
+<%= link_to "View all...", user_friendships_path(@user.id) %>
