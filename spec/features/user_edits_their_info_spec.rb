@@ -39,10 +39,12 @@ feature "user edits their user information", %{
       Rails.root, "spec/data/cover.jpg")
     )
 
+
     fill_in "Current password", with: test_user.password
 
     click_on "Update Player Information"
 
+    click_on "Crop"
     expect(page).to have_content "Your account has been updated successfully."
     expect(current_path) == user_path(test_user)
 
