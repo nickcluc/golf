@@ -8,14 +8,28 @@ class ApplicationController < ActionController::Base
     user_path(user)
   end
 
-  def after_update_path_for(user)
-    user_path(user)
-  end
-
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, :cover_image, :profile_photo]
-    devise_parameter_sanitizer.for(:account_update) << [:first_name, :last_name, :cover_image, :profile_photo]
+    devise_parameter_sanitizer.for(:sign_up) << [
+      :first_name,
+      :last_name,
+      :cover_image,
+      :profile_photo,
+      :profile_photo_crop_x,
+      :profile_photo_crop_y,
+      :profile_photo_crop_w,
+      :profile_photo_crop_h
+    ]
+    devise_parameter_sanitizer.for(:account_update) << [
+      :first_name,
+      :last_name,
+      :cover_image,
+      :profile_photo,
+      :profile_photo_crop_x,
+      :profile_photo_crop_y,
+      :profile_photo_crop_w,
+      :profile_photo_crop_h
+    ]
   end
 end

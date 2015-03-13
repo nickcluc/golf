@@ -3,6 +3,8 @@
 class ProfilePhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
+  process crop: :profile_photo
+
   if Rails.env.test?
     storage :file
   else
@@ -16,4 +18,5 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+
 end

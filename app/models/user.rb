@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   mount_uploader :cover_image, CoverImageUploader
   mount_uploader :profile_photo, ProfilePhotoUploader
+  crop_uploaded :profile_photo
+  
   has_many :rounds, -> { includes(:player_rounds) }
   has_many :player_rounds
   has_many :courses

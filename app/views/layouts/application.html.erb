@@ -13,7 +13,11 @@
       <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
           <li class="name">
-            <h1><a href="/">Golf</a></h1>
+            <% if current_user %>
+              <h1><%= link_to "Golf", user_path(current_user) %></h1>
+            <% else %>
+              <h1><a href="/">Golf</a></h1>
+            <% end %>
           </li>
         </ul>
         <ul class="left">
@@ -33,13 +37,12 @@
         </ul>
 
         <section class="top-bar-section">
-          <ul class="right">
+          <ul class="right" id="drop-nav">
             <%- if current_user -%>
               <li class="has-dropdown">
                 <a href="#">Signed in as <%= current_user.full_name %></a>
                 <ul class="dropdown">
-                  <li><a href="#">First link in dropdown</a></li>
-                  <li class="active"><a href="#">Active link in dropdown</a></li>
+                  <li><%= link_to "My Profile", user_path(current_user) %></li>
                   <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
                 </ul>
               </li>

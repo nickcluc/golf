@@ -20,10 +20,16 @@ feature 'user registers', %Q{
       fill_in 'Password', with: 'password', match: :prefer_exact
       fill_in 'Password confirmation', with: 'password'
 
+      attach_file("user[profile_photo]", File.join(
+        Rails.root, "spec/data/profile.jpg")
+      )
+
       click_button 'Sign Up'
     end
+    expect(page).to have_content "Thanks for signing up! Now please set your profile picture!"
 
-    expect(page).to have_content('Welcome! You have signed up successfully.')
+    click_on "Crop"
+
     expect(page).to have_content('Sign Out')
   end
 
