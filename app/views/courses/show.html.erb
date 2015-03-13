@@ -45,7 +45,7 @@
 <div class="row">
   <div class="small-3 columns">
     <h4 class="text-center">Recently Played Rounds</h4>
-    <% @course.rounds.each do |round| %>
+    <% @course.rounds.includes(:player_rounds).each do |round| %>
       <% round.player_rounds.each do |player_round| %>
         <div class="row">
           <%= link_to "#{player_round.round.round_date.strftime("%m/%d/%Y")}:
