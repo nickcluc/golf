@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:rounds, :player_rounds).find(params[:id])
+    @user = User.includes(:player_rounds).find(params[:id])
     @round = Round.new
     @course = Course.new
     @post = Post.new

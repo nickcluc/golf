@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   mount_uploader :cover_image, CoverImageUploader
   mount_uploader :profile_photo, ProfilePhotoUploader
   crop_uploaded :profile_photo
-  
-  has_many :rounds, -> { includes(:player_rounds) }
+
+  has_many :rounds
   has_many :player_rounds
   has_many :courses
   has_many :tees
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   def not_scored_rounds
     not_scored = []
-    rounds.each do |round|
+    rounds.includes(:player_rounds).each do |round|
       if round.round_date < Date.today
         if round.player_rounds.empty?
           not_scored << round
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   def upcoming_rounds
     upcoming = []
-    rounds.each do |round|
+    rounds.includes(:course).each do |round|
       if round.round_date > Date.today
         upcoming << round
       end
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   def handicap
     if player_rounds.count >= 5
       differentials = []
-      player_rounds.each do |round|
+      player_rounds.includes(:tee).each do |round|
         differentials << (round.score - round.tee.rating) * 113 / round.tee.slope
       end
       differentials.sort!

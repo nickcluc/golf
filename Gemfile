@@ -39,4 +39,8 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
+group :development do
+  gem "bullet"
+end
+
 gem 'sdoc', '~> 0.4.0', group: :doc

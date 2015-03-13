@@ -38,4 +38,12 @@ Rails.application.configure do
   config.action_controller.include_all_helpers = true
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+    Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
+  end
 end
