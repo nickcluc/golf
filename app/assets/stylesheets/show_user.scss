@@ -14,8 +14,11 @@
 }
 
 .avatar {
-  border-radius: 20px 20px 20px 20px;
-  margin-top: 20px;
+  border: 7px solid whitesmoke;
+  border-radius: 12px;
+  margin-top: -160px;
+  margin-left: 42px;
+  box-shadow: .5px .5px 2px gray;
 }
 
 #friend-request-list {
@@ -26,4 +29,22 @@
   margin-top: 5px;
   margin-left: 0;
   width: 120.5px;
+}
+
+.panel {
+  border-radius: 3px;
+}
+
+.friends_button {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.sub-nav{
+  padding-top:0;
+}
+#sub_nav_panel {
+
+  margin-top: 10px;
+  padding-left:5px;
+  padding-right: 5px;
 }

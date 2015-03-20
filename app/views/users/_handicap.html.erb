@@ -1,9 +1,10 @@
-<h4 class="text-center">Handicap:</h4>
+
 <% if @user.handicap.class == String %>
+  <h4 class="text-center">Handicap:</h4>
   <div class="progress round">
     <span class="meter" style="width:<%= @user.player_rounds.count*20 %>%"></span>
   </div>
   <p class="text-center"><%= @user.handicap %></p>
 <% else %>
-  <h2 class="text-center"><%= @user.handicap %></h2>
+  <h4>Handicap:<h2><%= @user.handicap %></h2></h4>
 <% end %>
