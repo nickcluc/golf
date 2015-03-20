@@ -1,9 +1,7 @@
 <% if @user == current_user %>
 <ul class="no-bullet right">
   <li>
-    <div class="row">
-      <%= link_to "Edit Profile", edit_user_registration_path(@user), class: "button small radius right" %>
-    </div>
+    <%= link_to '<i class="fa fa-cog"></i> Edit Profile'.html_safe, edit_user_registration_path(@user), class: "button small radius right friends_button" %>
   </li>
   <% unless @user.pending_friendships(current_user).empty? %>
     <div class="row">
@@ -24,7 +22,7 @@
       </div>
       <div class="small-3 columns">
 
-        <div class="button small radius right" id="friend-request-button">
+        <div class="button small radius right friends_button" id="friend-request-button">
           New Friend Request!
         </div>
       </div>
@@ -43,7 +41,7 @@
           </li>
         <% elsif current_user.friends.include?(@user) %>
           <li>
-            <button id="friends-button" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button small dropdown">Friends</button><br>
+            <button id="friends-button" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button small dropdown friends_button">Friends</button><br>
               <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
                 <li><%= link_to "Unfriend", friendship_path(@friendship), method: :delete, data: { confirm: "Are you sure you want to unfriend #{@user.first_name}?"} %></li>
               </ul>

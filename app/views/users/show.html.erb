@@ -1,52 +1,61 @@
 
 <div class="cover" style='background:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url(<%= @user.cover_image.to_s %>);background-size:cover;background-position: 50% 50%;background-repeat: no-repeat;'>
+
+</div>
+<section ng-controller="TabController as tab">
   <div class="row">
-    <div class="large-4 medium-4 hide-for-small columns">
+    <div class="large-3 medium-3 hide-for-small columns">
       <% if @user.profile_photo.url %>
-        <%= image_tag @user.profile_photo.url, class: "avatar", size: "200x200", alt: "#{@user.full_name}'s profile photo" %>
+        <%= image_tag @user.profile_photo.url, class: "avatar", size: "300x300", alt: "#{@user.full_name}'s profile photo" %>
       <% else %>
         <%= image_tag "http://placehold.it/200&text=Profile+Photo", class: "avatar", alt: "placeholder" %>
       <% end %>
     </div>
-    <div class="large-8 medium-8 columns">
-      <h1 class="page-title" style="text-align: right; margin-top:40px;"><%= @user.full_name %></h1>
-      <h4 style="text-align: right; color: white;">Email: <%= @user.email %></h4>
-      <%= render "users/friends_buttons" %>
-    </div>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="large-5 columns">
-    <div class="panel">
-      <%= render "users/handicap" %>
-    </div>
-    <div class="panel" id="friends">
-      <%= render "users/friends" %>
-    </div>
-    <div class="panel">
-      <h3 class="text-center">Upcoming Tee Times</h3>
-      <% if @user == current_user && @user.upcoming_rounds.empty? %>
-        <h6 class="text-center">You do not have any upcoming rounds.</h6>
-      <% end %>
-        <%= render "users/upcoming" %>
-      <% unless @user.not_scored_rounds.empty? %>
-        <h3 class="text-center">Unscored Rounds</h3>
-        <%= render "users/recently" %>
-      <% end %>
-      <% unless @user.player_rounds.empty? %>
-      <h3 class="text-center">Scored Rounds</h3>
-        <%= render "users/scored" %>
-      <% end %>
-    </div>
-  </div>
-  <div class="large-7 columns">
-    <div class="panel">
-      <h3>Smack Talk</h3>
-      <div id="wall_post_form">
-        <%= render "users/wall_post_form" %>
+    <div class="medium-8 columns">
+      <div class="medium-9 columns" style="padding-left:0px;">
+        <div class="panel" id="sub_nav_panel">
+          <%= render "users/stats_nav" %>
+        </div>
+      </div>
+      <div class="medium-3 columns">
+        <%= render "users/friends_buttons" %>
       </div>
     </div>
-      <%= render "users/feed" %>
   </div>
-</div>
+  <div class="row">
+    <div class="large-4 columns">
+      <div class="panel">
+        <h1><%= @user.full_name %></h1>
+        <h6 style="">Email: <%= @user.email %></h4>
+        <%= render "users/handicap" %>
+      </div>
+      <div class="panel" id="friends">
+        <%= render "users/friends" %>
+      </div>
+    </div>
+    <div class="large-8 columns">
+      <div class="panel" ng-show="tab.isSet(1)">
+        <h3>Smack Talk</h3>
+        <div id="wall_post_form">
+          <%= render "users/wall_post_form" %>
+        </div>
+        <%= render "users/feed" %>
+      </div>
+      <div class="panel" ng-show="tab.isSet(2)">
+        <h3 class="text-center">Upcoming Tee Times</h3>
+        <% if @user == current_user && @user.upcoming_rounds.empty? %>
+          <h6 class="text-center">You do not have any upcoming rounds.</h6>
+        <% end %>
+          <%= render "users/upcoming" %>
+      </div>
+      <div class="panel" ng-show="tab.isSet(3)">
+        <h3 class="text-center">Unscored Rounds</h3>
+        <%= render "users/recently" %>
+      </div>
+      <div class="panel" ng-show="tab.isSet(4)">
+        <h3 class="text-center">Scored Rounds</h3>
+        <%= render "users/scored" %>
+      </div>
+    </div>
+  </div>
+</section>
