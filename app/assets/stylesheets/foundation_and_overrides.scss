@@ -87,7 +87,7 @@ $column-gutter: rem-calc(12);
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We use these to define default font stacks
-// $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-sans-serif: "Lato", Helvetica, Roboto, Arial, sans-serif;
 // $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
@@ -1206,7 +1206,7 @@ $input-error-message-padding: rem-calc(2 9 2 9);
 
 // We use this to control the definition
 // $sub-nav-font-family: $body-font-family;
-// $sub-nav-font-size: rem-calc(14);
+$sub-nav-font-size: rem-calc(15);
 // $sub-nav-font-color: $aluminum;
 // $sub-nav-font-weight: $font-weight-normal;
 // $sub-nav-text-decoration: none;

@@ -25,7 +25,7 @@
   <div class="row">
     <div class="large-4 columns">
       <div class="panel">
-        <h1><%= @user.full_name %></h1>
+        <h1><span class="title-heavy"><%= @user.first_name %></span><span class="title-light"><%= @user.last_name %></span></h1>
         <h6 style="">Email: <%= @user.email %></h4>
         <%= render "users/handicap" %>
       </div>
@@ -34,8 +34,7 @@
       </div>
     </div>
     <div class="large-8 columns">
-      <div class="panel" ng-show="tab.isSet(1)">
-        <h3>Smack Talk</h3>
+      <div ng-show="tab.isSet(1)">
         <div id="wall_post_form">
           <%= render "users/wall_post_form" %>
         </div>
