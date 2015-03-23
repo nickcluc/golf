@@ -10,7 +10,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:player_rounds).find(params[:id])
+    # binding.pry
+    if params[:id]
+      @user = User.includes(:player_rounds).find(params[:id])
+    else
+      @user = current_user
+    end
     @round = Round.new
     @course = Course.new
     @post = Post.new

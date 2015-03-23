@@ -7,17 +7,25 @@
 }
 
 .cover {
-  width: auto;
+  width: 100%;
   max-width:100%;
-  height: 300px;
-  background-attachment: fixed;
+  height: 200px;
+  position: fixed;
+  z-index: -2;
+}
+
+.user-content {
+  top: 200px;
+  background-color: white;
+  position: relative;
+  bottom: 200px;
 }
 
 .avatar {
   border: 7px solid whitesmoke;
   border-radius: 12px;
-  margin-top: -160px;
-  margin-left: 42px;
+  margin-top: -90px;
+  margin-left: 25px;
   box-shadow: .5px .5px 2px gray;
 }
 
@@ -54,4 +62,8 @@
 
 .title-heavy {
   font-weight: 700;
+}
+.panel {
+  border: none;
+  background: rgb(234, 234, 234);
 }
