@@ -295,27 +295,7 @@
       "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/users/sessions_controller.rb": [
         1,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         1,
-        null,
-        null,
-        null,
-        null,
         null,
         1,
         38,
@@ -372,7 +352,12 @@
         null,
         null,
         1,
+        null,
         85,
+        85,
+        null,
+        0,
+        null,
         85,
         85,
         85,
@@ -683,6 +668,6 @@
         null
       ]
     },
-    "timestamp": 1426878370
+    "timestamp": 1427132434
   }
 }
