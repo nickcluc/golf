@@ -1,9 +1,11 @@
-<div class="row">
-  <h1 class="title">All Courses</h1>
-</div>
-
-<% @courses.each do |course| %>
+<div class="courses-cover">
   <div class="row">
-    <%= link_to course.name, course_path(course) %>
+    <h1 class="page-title">Golf Course Directory</h1>
   </div>
-<% end %>
+
+  <% @courses.each do |course| %>
+    <div class="row">
+      <%= link_to course.name, course_path(course) %>
+    </div>
+  <% end %>
+</div>

@@ -23,6 +23,7 @@ gem 'carrierwave-crop'
 gem 'rails_12factor', group: :production
 gem 'coveralls', require: false, group: :test
 gem 'simplecov', require: false, group: :test
+# gem 'yelp', require: 'yelp'
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
