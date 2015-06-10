@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/user.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/models/user.rb": [
         1,
         1,
         1,
@@ -118,7 +118,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/uploaders/cover_image_uploader.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/uploaders/cover_image_uploader.rb": [
         null,
         null,
         1,
@@ -139,7 +139,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/uploaders/profile_photo_uploader.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/uploaders/profile_photo_uploader.rb": [
         null,
         null,
         1,
@@ -163,7 +163,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/helpers/states_helper.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/helpers/states_helper.rb": [
         1,
         null,
         1,
@@ -223,7 +223,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/helpers/user_registrations_helper.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/helpers/user_registrations_helper.rb": [
         1,
         1,
         0,
@@ -238,7 +238,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/post.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/models/post.rb": [
         1,
         1,
         1,
@@ -251,7 +251,7 @@
         1,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/tee.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/models/tee.rb": [
         1,
         1,
         1,
@@ -262,7 +262,7 @@
         1,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/round.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/models/round.rb": [
         1,
         1,
         1,
@@ -271,7 +271,7 @@
         1,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/course.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/models/course.rb": [
         1,
         1,
         1,
@@ -280,10 +280,10 @@
         1,
         null,
         1,
-        1,
+        441,
         null,
         1,
-        0,
+        39,
         null,
         null,
         1,
@@ -292,7 +292,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/users/sessions_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/users/sessions_controller.rb": [
         1,
         null,
         1,
@@ -302,7 +302,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/application_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -339,7 +339,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/users_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/users_controller.rb": [
         1,
         1,
         null,
@@ -369,7 +369,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/player_round.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/models/player_round.rb": [
         1,
         1,
         1,
@@ -379,7 +379,7 @@
         1,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/models/friendship.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/models/friendship.rb": [
         1,
         1,
         1,
@@ -389,7 +389,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/rounds_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/rounds_controller.rb": [
         1,
         1,
         null,
@@ -423,7 +423,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/player_rounds_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/player_rounds_controller.rb": [
         1,
         1,
         null,
@@ -432,9 +432,16 @@
         1,
         1,
         1,
+        0,
+        null,
+        1,
         1,
         1,
         null,
+        0,
+        0,
+        0,
+        0,
         0,
         null,
         null,
@@ -452,7 +459,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/courses_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/courses_controller.rb": [
         1,
         1,
         null,
@@ -497,7 +504,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/tees_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/tees_controller.rb": [
         1,
         1,
         null,
@@ -522,7 +529,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/friendships_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/friendships_controller.rb": [
         1,
         1,
         5,
@@ -570,14 +577,14 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/homes_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/homes_controller.rb": [
         1,
         1,
         10,
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/users/registrations_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/users/registrations_controller.rb": [
         1,
         null,
         1,
@@ -640,7 +647,7 @@
         null,
         null
       ],
-      "/Users/nickcluc/Dropbox/launch/projects/golf/app/controllers/posts_controller.rb": [
+      "/Users/nclucas/Dropbox/launch/projects/golf/app/controllers/posts_controller.rb": [
         1,
         1,
         null,
@@ -668,6 +675,6 @@
         null
       ]
     },
-    "timestamp": 1427132434
+    "timestamp": 1433949755
   }
 }

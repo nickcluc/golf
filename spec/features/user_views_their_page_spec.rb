@@ -12,6 +12,7 @@ feature "User views their page", %{
   before (:each) do
     @future_round = FactoryGirl.create(:round, round_date: Date.today + 3, user_id: test_user.id)
     @past_round = FactoryGirl.create(:round, round_date: Date.today - 3, user_id: test_user.id)
+    Course.any_instance.stub(:geocode)
   end
 
   scenario "User views their player page" do

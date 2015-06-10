@@ -5,11 +5,18 @@ class PlayerRoundsController < ApplicationController
     @player_round = PlayerRound.new(player_round_params)
     @player_round.user = current_user
     @player_round.round = Round.find(params[:round_id])
+    if params[:player_round][:user_id]
+      @player_round.user = User.find(params[:player_round][:user_id])
+    end
     if @player_round.save
       flash[:notice] = "Score Saved Successfully!"
       redirect_to round_path(@player_round.round)
     else
-      render "round#show"
+      @round = Round.find(params[:round_id])
+      @player_round = PlayerRound.new
+      @course_tees = @round.course.tees
+      @location = [[@round.course.latitude, @round.course.longitude]]
+      render "rounds/show"
     end
   end
 

@@ -16,7 +16,7 @@ FactoryGirl.define do
     state "MA"
     zip_code "01960"
 
-    after(:build) { |course| course.class.skip_callback(:create, :after, :geocode) }
+    after(:build) { |course| course.class.skip_callback(:validate, :create, :after, :geocode) }
     user
   end
 

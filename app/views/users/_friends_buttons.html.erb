@@ -1,33 +1,33 @@
 <% if @user == current_user %>
-<ul class="no-bullet right">
-  <li>
-    <%= link_to '<i class="fa fa-cog"></i> Edit Profile'.html_safe, edit_user_registration_path(@user), class: "button small radius right friends_button" %>
-  </li>
-  <% unless @user.pending_friendships(current_user).empty? %>
-    <div class="row">
-      <div class="small-9 columns">
-        <div class="panel"  id="friend-request-list">
-          <ul class="no-bullet">
-            <% if signed_in? %>
-              <% @user.pending_friendships(current_user).each do |pending| %>
-                <li>
-                  <%= image_tag pending.user.profile_photo, size:"60x60" %>
-                  <%= pending.user.full_name %>
-                  <%= link_to "Accept", friendship_path(accepted: true, user_id: pending.user.id, id: pending.id), method: :put %> | <%= link_to "Ignore", friendship_path(ignored: true, id: pending.id), method: :put %>
-                </li>
+  <ul class="no-bullet right">
+    <li>
+      <%= link_to '<i class="fa fa-cog"></i> Edit Profile'.html_safe, edit_user_registration_path(@user), class: "button small radius right friends_button" %>
+    </li>
+    <% unless @user.pending_friendships(current_user).empty? %>
+      <div class="row">
+        <div class="small-9 columns">
+          <div class="panel"  id="friend-request-list">
+            <ul class="no-bullet">
+              <% if signed_in? %>
+                <% @user.pending_friendships(current_user).each do |pending| %>
+                  <li>
+                    <%= image_tag pending.user.profile_photo, size:"60x60" %>
+                    <%= pending.user.full_name %>
+                    <%= link_to "Accept", friendship_path(accepted: true, user_id: pending.user.id, id: pending.id), method: :put %> | <%= link_to "Ignore", friendship_path(ignored: true, id: pending.id), method: :put %>
+                  </li>
+                <% end %>
               <% end %>
-            <% end %>
-          </ul>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="small-3 columns">
+        <div class="small-3 columns">
 
-        <div class="button small radius right friends_button" id="friend-request-button">
-          New Friend Request!
+          <div class="button small radius right friends_button" id="friend-request-button">
+            New Friend Request!
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
   </ul>
 <% else %>
     <% if signed_in? %>

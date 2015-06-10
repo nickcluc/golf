@@ -59,7 +59,7 @@
   <%- flash.each do |key, value| -%>
     <div class="alert-box flash-<%= key %>" style="margin-bottom:0;">
       <%= value %>
-      <a href="" class="close">×</a>
+      <a href="javascript:history.go(0);" class="close">×</a>
     </div>
   <%- end -%>
 
