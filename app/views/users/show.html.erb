@@ -9,7 +9,7 @@
         <% if @user.profile_photo.url %>
           <%= image_tag @user.profile_photo.url, class: "avatar", size: "160x160", alt: "#{@user.full_name}'s profile photo" %>
         <% else %>
-          <%= image_tag "http://placehold.it/200&text=Profile+Photo", class: "avatar", alt: "placeholder" %>
+          <%= image_tag "https://placeholdit.imgix.net/~text?txtsize=19&txt=#{@user.full_name}&w=160&h=160", class: "avatar", alt: "placeholder" %>
         <% end %>
       </div>
       <div class="medium-8 columns">

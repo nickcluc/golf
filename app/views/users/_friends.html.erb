@@ -8,7 +8,11 @@
       </li>
     <% elsif friendship.friend == @user %>
       <li class="friend-listing">
-        <%= link_to image_tag(friendship.user.profile_photo, size: "75"), user_path(friendship.user) %><br>
+        <% if friendship.user.profile_photo %>
+          <%= link_to image_tag(friendship.user.profile_photo, size: "75"), user_path(friendship.user) %><br>
+        <% else %>
+          <%= image_tag "http://placehold.it/75", class: "avatar", alt: "placeholder" %>
+        <% end %>
         <%= link_to friendship.user.full_name, user_path(friendship.user) %>
       </li>
       <% end %>
