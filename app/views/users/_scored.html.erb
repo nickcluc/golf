@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @user.rounds.includes(:player_round).each do || %>
+    <% @user.player_rounds.includes(:round).each do |played| %>
       <tr>
         <td><%= played.round.round_date.strftime("%m/%d/%Y") %></td>
         <td><%= link_to "#{played.round.course.name}", course_path(played.round.course) %></td>
