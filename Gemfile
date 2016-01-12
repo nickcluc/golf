@@ -20,14 +20,11 @@ gem 'mini_magick'
 gem 'fog'
 gem 'searchkick'
 gem 'carrierwave-crop'
-gem 'rails_12factor', group: :production
-gem 'coveralls', require: false, group: :test
-gem 'simplecov', require: false, group: :test
-# gem 'yelp', require: 'yelp'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
-  gem 'spring', '~> 1.3.3'
+  gem 'spring', '1.4.1'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'capybara'
@@ -40,8 +37,17 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
+group :test do
+  gem 'coveralls', require: false
+  gem 'simplecov', require: false
+end
+
 group :development do
   gem "bullet"
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 gem 'sdoc', '~> 0.4.0', group: :doc
