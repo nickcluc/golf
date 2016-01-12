@@ -31,4 +31,9 @@ Rails.application.routes.draw do
   resources :rounds, only: :show do
     resources :player_rounds, only: [:index, :create]
   end
+  namespace :api do
+    namespace :v1 do
+      resources :courses, only: [:index, :show]
+    end
+  end
 end
