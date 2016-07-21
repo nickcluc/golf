@@ -21,6 +21,7 @@ gem 'fog'
 gem 'searchkick'
 gem 'carrierwave-crop'
 gem 'active_model_serializers'
+gem 'haml-rails', '~> 0.9'
 
 group :development, :test do
   gem 'web-console', '~> 2.0'

@@ -1,0 +1,13 @@
+.row
+  .panel
+    %h1.text-center
+      = @user.full_name
+      's Friends
+    .large-12.large-centered.columns
+      %ul.large-block-grid-2.no-bullet
+        - @user.friends.each do |friend|
+          .large-6.columns
+            %li.friend-box{:style => "padding-bottom:1px;"}
+              = image_tag friend.profile_photo, class: "user-photo"
+              = link_to friend.full_name, user_path(friend)
+              = link_to "Unfriend", friendship_path(@friendship), method: :delete, data: { confirm: "Are you sure you want to unfriend #{@user.first_name}?"}, class: "radius secondary label right", style: "margin-top:39px;margin-right:3px;"

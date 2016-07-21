@@ -1,0 +1,20 @@
+- if params[:player_query]
+  %h1 Player Search
+  %h4
+    Your search for "#{params[:player_query]}" returned #{@users.count} result(s).
+- else
+  %h1 All Users
+- @users.each do |user|
+  .panel
+    .row
+      .large-4.medium-4.columns
+        = image_tag user.profile_photo, size: "150x150" unless user.profile_photo == nil
+      .large-8.medium-8.columns
+        %h4= user.full_name
+        = link_to user.email, user_path(user)
+        %br/
+        %h6 Handicap:
+        - if user.handicap.class == String
+          %h6 N/A
+        - else
+          %h6= user.handicap

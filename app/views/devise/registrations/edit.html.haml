@@ -1,0 +1,20 @@
+.large-5.columns
+  .panel.radius
+    %h2 Edit Player Profile
+    = simple_form_for(resource, url: registration_path(resource)) do |f|
+      .row.collapse
+        .small-6.columns
+          = f.input :first_name, input_html: {class: "radius"}
+        .small-6.columns
+          = f.input :last_name, input_html: {class: "radius"}
+      = f.input :email, input_html: {class: "radius"}
+      = f.input :password, input_html: {class: "radius"}
+      = f.input :password_confirmation, input_html: {class: "radius"}
+      = f.input :profile_photo, label: "Profile photo"
+      = f.input :cover_image, label: "Cover photo"
+      = f.input :current_password, required: true, label: "Current password - (we need this to confirm your changes)"
+      = f.submit "Update Player Information", class: "button radius"
+    %h3 Cancel my account
+    %p
+      Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button radius"}
+    = link_to "Back", :back

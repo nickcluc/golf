@@ -1,0 +1,8 @@
+%h2.text-center Add A New Round
+= simple_form_for [@user, @round] do |f|
+  = f.input :round_date, as: :string, label: "Date", input_html: { id: "round_date" }
+  = f.input :tee_time, as: :string, label: "Tee Time", input_html: { id:"tee_time" }
+  = f.association :course
+  %p
+    %a.secondary.small.button.radius{"data-reveal-id" => "secondModal", :href => "#"} Add A New Course
+  = f.button :submit

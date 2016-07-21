@@ -1,8 +1,0 @@
-<div class="panel radius">
-  <h4>Existing Users</h4>
-  <%= simple_form_for(:user, :url => session_path(:user)) do |f| %>
-    <%= f.input :email, autofocus: true %>
-    <%= f.input :password, autocomplete: "off" %>
-    <%= f.submit "Log in", class:"tiny button radius" %>
-  <% end %>
-</div>

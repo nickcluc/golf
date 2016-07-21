@@ -1,0 +1,6 @@
+.courses-cover
+  .row
+    %h1.page-title Golf Course Directory
+  - @courses.each do |course|
+    .row
+      = link_to course.name, course_path(course)

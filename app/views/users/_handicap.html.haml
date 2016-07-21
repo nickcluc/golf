@@ -1,0 +1,8 @@
+- if @user.handicap.class == String
+  %h4.text-center Handicap:
+  .progress.round
+    %span.meter{:style => "width:#{@user.player_rounds.count*20}%"}
+  %p.text-center= @user.handicap
+- else
+  %h4
+    Handicap: #{@user.handicap}
