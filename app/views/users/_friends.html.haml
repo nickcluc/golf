@@ -1,0 +1,19 @@
+%h3
+  = @user.first_name
+  's Friends
+%ul.large-block-grid-3
+  - @user.accepted_friends.includes(:friend).sample(6).each do |friendship|
+    - if friendship.user == @user
+      %li.friend-listing
+        = link_to image_tag(friendship.friend.profile_photo, size: "75"), user_path(friendship.friend)
+        %br/
+        = link_to friendship.friend.full_name, user_path(friendship.friend)
+    - elsif friendship.friend == @user
+      %li.friend-listing
+        - if friendship.user.profile_photo
+          = link_to image_tag(friendship.user.profile_photo, size: "75"), user_path(friendship.user)
+          %br/
+        - else
+          = image_tag "http://placehold.it/75", class: "avatar", alt: "placeholder"
+        = link_to friendship.user.full_name, user_path(friendship.user)
+= link_to "View all...", user_friendships_path(@user.id)

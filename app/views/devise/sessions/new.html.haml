@@ -1,0 +1,9 @@
+%br/
+.small-4.columns
+  .panel.radius
+    %h4 Try Again!
+    = simple_form_for(:user, :url => session_path(:user)) do |f|
+      = f.input :email, autofocus: true
+      = f.input :password, autocomplete: "off"
+      = f.submit "Log in", class:"tiny button radius"
+    = render "devise/shared/links"

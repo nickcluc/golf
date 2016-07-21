@@ -1,0 +1,8 @@
+%h2.text-center.white
+  Edit Your Photo
+  .panel
+    = form_for(resource, url:registration_path(resource)) do |f|
+      = image_tag(resource.profile_photo.url, id: "edit-photo")
+      - for attribute in [:profile_photo_crop_x, :profile_photo_crop_y, :profile_photo_crop_w, :profile_photo_crop_h]
+        = f.hidden_field attribute, id: attribute
+      = f.submit "Crop", class: "button small radius right"

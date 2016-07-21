@@ -1,0 +1,12 @@
+.row
+  .small-12.columns
+    %h1.title Add A Course
+.small-8-centered.columns
+  = simple_form_for @course do |f|
+    = f.input :name
+    = f.input :street_address, label: "Street Address"
+    = f.input :city
+    = f.input :state, collection: us_states
+    = f.input :zip_code, label: "Zip Code"
+    = f.input :phone, label: "Phone Number"
+    = f.button :submit

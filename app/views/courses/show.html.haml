@@ -1,0 +1,112 @@
+.row
+  .small-12.columns
+    %h1.text-center= @course.name
+.row
+  .large-7.small-8.small-centered.large-uncentered.columns
+    #map-canvas
+  .large-5.small-12.columns
+    %ul
+      %h4 Course Info
+      %li
+        = @course.street_address
+        %br/
+        = @course.city
+        , #{@course.state} #{@course.zip_code}
+      %li
+        Phone: #{@course.phone}
+      %h4 Tees
+      - @course.tees.to_a.sort_by!{|tee| tee.yardage}.reverse.each do |tee|
+        %li
+          = tee.color
+          \:
+          Rating: #{tee.rating};
+          Slope: #{tee.slope}
+          Yardage: #{tee.yardage} yds
+          %br/
+          - if current_user
+            - unless current_user.handicap.class == String
+              Your Handicap:
+              \#{current_user.handicap * tee.slope / 113}
+      - if current_user
+        - if @course.user == current_user
+          #add_tee_button.button.tiny.radius
+            Add Tee
+          #add_tee_form
+            = render "tees/form"
+%br/
+.row
+  .small-3.columns
+    %h4.text-center Recently Played Rounds
+    - @course.rounds.includes(:player_rounds).each do |round|
+      - round.player_rounds.each do |player_round|
+        .row
+          = link_to "#{player_round.round.round_date.strftime("%m/%d/%Y")}:                     |
+            #{player_round.user.email} - #{player_round.score}", round_path(player_round.round) |
+  .small-5.columns
+    %h4.text-center
+      Your Upcoming Rounds at #{@course.name}
+    - if current_user
+      - if current_user.course_rounds(@course).empty?
+        %h5 You don't have any rounds scheduled here.
+      - else
+        - current_user.course_rounds(@course).each do |round|
+          .row
+            = link_to "#{round.round_date.strftime("%m/%d/%Y")}            |
+              #{round.tee_time.strftime("at %I:%M%p")}", round_path(round) |
+  .small-4.columns
+%script{:charset => "utf-8", :type => "text/javascript"}
+  var addresses = #{@location};
+  var searchCity = "#{@course.full_address}";
+
+  var mapCenter;
+  if (! searchCity){
+  var searchCity = "";
+  }
+  geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({'address': searchCity}, function(results, status){
+  mapCenter = results[0].geometry.location;
+  });
+  function initialize() {
+  var map;
+  var elevator;
+
+  var mapOptions = {
+  zoom: 14,
+  center: mapCenter,
+  disableDefaultUI: false
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  var bounds = new google.maps.LatLngBounds();
+  var pointCount = 0;
+  for (var x = 0; x < addresses.length; x++) {
+  var p = addresses[x];
+  var latlng = new google.maps.LatLng(p[0], p[1]);
+  new google.maps.Marker({
+  position: latlng,
+  map: map
+  });
+  pointCount++;
+  bounds.extend(latlng);
+  }
+  if (pointCount > 1) {
+  map.fitBounds(bounds);
+  }
+  else if (pointCount == 1) {
+  map.setCenter(bounds.getCenter());
+  map.setZoom(13);
+  }
+  }
+
+
+  google.maps.event.addDomListener(
+  window,
+  'load',
+  function () {
+  \//1000 milliseconds == 1 second,
+  \//play with this til find a happy minimum delay amount
+  window.setTimeout(initialize, 0);
+  }
+  );

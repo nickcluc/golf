@@ -1,0 +1,43 @@
+.cover{:style => "background:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url(#{@user.cover_image.to_s});background-size:cover;background-position: 50% 50%;background-repeat: no-repeat;"}
+%section{"ng-controller" => "TabController as tab"}
+  .user-content
+    .row
+      .large-3.medium-3.hide-for-small.columns
+        - if @user.profile_photo.url
+          = image_tag @user.profile_photo.url, class: "avatar", size: "160x160", alt: "#{@user.full_name}'s profile photo"
+        - else
+          = image_tag "https://placeholdit.imgix.net/~text?txtsize=19&txt=#{@user.full_name}&w=160&h=160", class: "avatar", alt: "placeholder"
+      .medium-8.columns
+        .medium-9.columns{:style => "padding-left:0px;"}
+          #sub_nav_panel.panel
+            = render "users/stats_nav"
+        .medium-3.columns
+          = render "users/friends_buttons"
+    .row
+      .large-4.columns
+        .panel
+          %h1
+            %span.title-heavy= @user.first_name
+            %br/
+            %span.title-light= @user.last_name
+          %h6{:style => ""}
+            Email: #{@user.email}
+            \#{render "users/handicap"}
+        #friends.panel
+          = render "users/friends"
+      .large-8.columns
+        %div{"ng-show" => "tab.isSet(1)"}
+          #wall_post_form
+            = render "users/wall_post_form"
+          = render "users/feed"
+        .panel{"ng-show" => "tab.isSet(2)"}
+          %h3.text-center Upcoming Tee Times
+          - if @user == current_user && @user.upcoming_rounds.empty?
+            %h6.text-center You do not have any upcoming rounds.
+          = render "users/upcoming"
+        .panel{"ng-show" => "tab.isSet(3)"}
+          %h3.text-center Unscored Rounds
+          = render "users/recently"
+        .panel{"ng-show" => "tab.isSet(4)"}
+          %h3.text-center Scored Rounds
+          = render "users/scored"
