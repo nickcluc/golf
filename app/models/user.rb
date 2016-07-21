@@ -17,88 +17,58 @@ class User < ActiveRecord::Base
 
   searchkick
 
+  DIFF_HASH = {
+    5 => 1,
+    6 => 1,
+    7 => 2,
+    8 => 2,
+    9 => 3,
+    10 => 3,
+    11 => 4,
+    12 => 4,
+    13 => 5,
+    14 => 5,
+    15 => 6,
+    16 => 6,
+    17 => 7,
+    18 => 8,
+    19 => 9,
+    20 => 10
+  }.freeze
+
   def full_name
-    if first_name && last_name
-      first_name + " " + last_name
-    else
-      "Add your full name"
-    end
+    first_name && last_name ? first_name + " " + last_name : "Add your full name"
   end
 
-  def not_scored_rounds
+  def not_scored_rounds(rounds_count=3)
     not_scored = []
-    rounds.includes(:player_rounds).each do |round|
-      if round.round_date < Date.today
-        if round.player_rounds.empty?
-          not_scored << round
-        end
-      end
+    rounds.includes(:player_rounds).where("round_date < ?", Date.today).each do |round|
+      not_scored << round if round.player_rounds.empty?
     end
-    not_scored.last(3)
+    not_scored.last(rounds_count)
   end
 
   def upcoming_rounds
-    upcoming = []
-    rounds.includes(:course).each do |round|
-      if round.round_date > Date.today
-        upcoming << round
-      end
-    end
-    upcoming
+    rounds.includes(:course).where("round_date > ?", Date.today)
   end
 
   def handicap
     if player_rounds.count >= 5
       differentials = []
-      player_rounds.includes(:tee).each do |round|
-        differentials << (round.score - round.tee.rating) * 113 / round.tee.slope
-      end
+      player_rounds.includes(:tee).each{ |round| differentials << (round.score - round.tee.rating) * 113 / round.tee.slope }
       differentials.sort!
       usable_differentials = []
       diff_count = differentials.length
-      if diff_count == 5 || diff_count == 6
-        n = 1
-      elsif diff_count == 7 || diff_count == 8
-        n = 2
-      elsif diff_count == 9 || diff_count == 10
-        n = 3
-      elsif diff_count == 11 || diff_count == 12
-        n = 4
-      elsif diff_count == 13 || diff_count == 14
-        n = 5
-      elsif diff_count == 15 || diff_count == 16
-        n = 6
-      elsif diff_count == 17
-        n = 7
-      elsif diff_count == 18
-        n = 8
-      elsif diff_count == 19
-        n = 9
-      elsif diff_count == 20
-        n = 10
-      end
-      n.times do
-        usable_differentials << differentials.shift
-      end
-      hcap_sum = usable_differentials.inject(0) do |sum, number|
-        sum + number
-      end
-      hcap = (hcap_sum / usable_differentials.length * 0.96).round(0)
+      n = DIFF_HASH[diff_count]
+      n.times{ usable_differentials << differentials.shift }
+      ( usable_differentials.inject(0){ |sum, number| sum + number } / usable_differentials.length * 0.96 ).round(0)
     else
-      hcap = "You need to play #{5-player_rounds.count}
-                more rounds to calculate a handicap."
+      "You need to play #{5-player_rounds.count} more rounds to calculate a handicap."
     end
-    hcap
   end
 
   def course_rounds(course)
-    upcoming_course_rounds = []
-    rounds.where(course_id: course.id).each do |round|
-      if round.round_date > Date.today
-        upcoming_course_rounds << round
-      end
-    end
-    upcoming_course_rounds
+    rounds.where("course_id = ? AND round_date > ?", course.id, Date.today)
   end
 
   def accepted_friends
