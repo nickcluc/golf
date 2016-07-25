@@ -1,13 +1,13 @@
 class Api::V1::CoursesController < Api::V1::BaseController
-  before_filter :restrict_access
+  # before_filter :restrict_access
 
   def index
-    @courses = Course.all
+    @courses = Course.all.includes(:tees)
     render json: @courses
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.find(params[:id]).includes(:tees)
     render json: @course
   end
 
