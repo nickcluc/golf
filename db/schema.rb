@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211200848) do
+ActiveRecord::Schema.define(version: 20160725032853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20151211200848) do
     t.integer "friend_id",                 null: false
     t.boolean "accepted",  default: false, null: false
     t.boolean "ignored",   default: false
+  end
+
+  create_table "holes", force: :cascade do |t|
+    t.integer "number",    null: false
+    t.integer "yardage",   null: false
+    t.integer "handicap",  null: false
+    t.integer "score",     null: false
+    t.integer "course_id", null: false
   end
 
   create_table "player_rounds", force: :cascade do |t|
