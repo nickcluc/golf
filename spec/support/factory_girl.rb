@@ -46,4 +46,12 @@ FactoryGirl.define do
     tee
     user
   end
+
+  factory :hole do
+    number    18
+    handicap  11
+    yardage   464
+
+    course
+  end
 end
