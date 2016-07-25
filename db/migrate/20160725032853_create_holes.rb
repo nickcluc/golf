@@ -4,7 +4,6 @@ class CreateHoles < ActiveRecord::Migration
       t.integer :number,    null: false
       t.integer :yardage,   null: false
       t.integer :handicap,  null: false
-      t.integer :score,     null: false
       t.integer :course_id, null: false
     end
   end
