@@ -44,7 +44,7 @@ group :test do
 end
 
 group :development do
-  gem "bullet"
+  gem 'bullet'
 end
 
 group :production do
