@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @courses = Course.all || []
+    @courses = Course.all.order(:name).group_by{|c| c.name[0]} || []
   end
 
   def new

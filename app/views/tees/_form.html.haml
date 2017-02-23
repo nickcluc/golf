@@ -1,5 +1,6 @@
-= simple_form_for [@course, @new_tee] do |f|
-  .row
+%fieldset
+  %legend New Tee
+  = simple_form_for [@course, @new_tee] do |f|
     = f.input :color
     = f.input :rating
     = f.input :slope

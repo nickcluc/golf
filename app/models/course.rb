@@ -3,6 +3,7 @@ class Course < ActiveRecord::Base
   has_many :tees
   has_many :rounds
   has_many :holes
+  has_many :player_rounds, through: :rounds
 
   validates :name, :street_address, :city, :state, :zip_code, presence: true
 

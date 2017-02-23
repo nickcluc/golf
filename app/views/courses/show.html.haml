@@ -2,9 +2,10 @@
   .small-12.columns
     %h1.text-center= @course.name
 .row
-  .large-7.small-8.small-centered.large-uncentered.columns
+  .large-12.small-8.small-centered.large-uncentered.columns
     #map-canvas
-  .large-5.small-12.columns
+.row
+  .large-4.small-12.columns
     %ul
       %h4 Course Info
       %li
@@ -14,46 +15,31 @@
         , #{@course.state} #{@course.zip_code}
       %li
         Phone: #{@course.phone}
-      %h4 Tees
-      - @course.tees.to_a.sort_by!{|tee| tee.yardage}.reverse.each do |tee|
-        %li
-          = tee.color
-          \:
-          Rating: #{tee.rating};
-          Slope: #{tee.slope}
-          Yardage: #{tee.yardage} yds
-          %br/
-          - if current_user
-            - unless current_user.handicap.class == String
-              Your Handicap:
-              \#{current_user.handicap * tee.slope / 113}
+  - if current_user
+    .small-4.columns
+      %h4.text-center Recently Played Rounds
+      = render "played_rounds_table"
+    .small-4.columns
+      %h4.text-center
+        Your Upcoming Rounds at #{@course.name}
       - if current_user
-        - if @course.user == current_user
-          #add_tee_button.button.tiny.radius
-            Add Tee
-          #add_tee_form
-            = render "tees/form"
-%br/
+        - if current_user.course_rounds(@course).empty?
+          %h5 You don't have any rounds scheduled here.
+        - else
+          - current_user.course_rounds(@course).each do |round|
+            .row
+              = link_to "#{round.round_date.strftime("%m/%d/%Y")}            |
+                #{round.tee_time.strftime("at %I:%M%p")}", round_path(round) |
 .row
-  .small-3.columns
-    %h4.text-center Recently Played Rounds
-    - @course.rounds.includes(:player_rounds).each do |round|
-      - round.player_rounds.each do |player_round|
-        .row
-          = link_to "#{player_round.round.round_date.strftime("%m/%d/%Y")}:                     |
-            #{player_round.user.email} - #{player_round.score}", round_path(player_round.round) |
-  .small-5.columns
-    %h4.text-center
-      Your Upcoming Rounds at #{@course.name}
+  .large-6.columns
+    %h4 Tees
+    = render "tee_table"
     - if current_user
-      - if current_user.course_rounds(@course).empty?
-        %h5 You don't have any rounds scheduled here.
-      - else
-        - current_user.course_rounds(@course).each do |round|
-          .row
-            = link_to "#{round.round_date.strftime("%m/%d/%Y")}            |
-              #{round.tee_time.strftime("at %I:%M%p")}", round_path(round) |
-  .small-4.columns
+      - if @course.user == current_user
+        #add_tee_button.label.button.tiny.radius
+          Add New Tee
+        #add_tee_form
+          = render "tees/form"
 %script{:charset => "utf-8", :type => "text/javascript"}
   var addresses = #{@location};
   var searchCity = "#{@course.full_address}";
