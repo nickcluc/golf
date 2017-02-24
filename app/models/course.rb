@@ -5,6 +5,8 @@ class Course < ActiveRecord::Base
   has_many :holes
   has_many :player_rounds, through: :rounds
 
+  HOLE_MAX = 18
+
   validates :name, :street_address, :city, :state, :zip_code, presence: true
 
   geocoded_by :full_street_address

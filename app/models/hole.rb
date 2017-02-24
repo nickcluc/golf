@@ -1,6 +1,7 @@
 # Holes on a golf course
 class Hole < ActiveRecord::Base
   belongs_to :course
+  has_many :tee_yardages
 
   validates :number, :yardage, :handicap, :course, presence: true
   validates :number, :handicap, numericality: {

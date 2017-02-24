@@ -1,0 +1,12 @@
+%table
+  %thead
+    %tr
+      %td{width: "100px;"} Date
+      %td Player
+      %td Score
+  %tbody
+    - @course.player_rounds.each do |player_round|
+      %tr
+        %td= link_to(player_round.round.round_date.strftime("%m/%d/%Y"), round_path(player_round.round) )
+        %td= player_round.user.full_name
+        %td= player_round.score

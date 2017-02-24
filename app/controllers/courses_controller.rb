@@ -25,6 +25,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @location = [[@course.latitude, @course.longitude]]
     @new_tee = Tee.new
+    @holes = @course.holes.order('number ASC')
+    @front_nine = @holes.limit(9)
+    @back_nine = @holes.offset(9).limit(9)
   end
 
   private

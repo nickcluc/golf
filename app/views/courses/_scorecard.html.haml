@@ -1,0 +1,32 @@
+%table
+  %thead
+    %tr
+      %th{width: "15  0px"} Hole
+      - @front_nine.pluck(:number).each do |n|
+        %th= n
+      %th Out
+      - @back_nine.pluck(:number).each do |n|
+        %th= n
+      %th In
+      %th Total
+    %tbody
+      - @course.tees.each do |tee|
+        %tr
+          %th= "#{tee.color.capitalize} (#{tee.slope}/#{tee.rating})"
+          - tee.front_nine.each do |ty|
+            %td= ty.yardage
+          %td= tee.front_nine.pluck(:yardage).inject(0, :+)
+          - tee.back_nine.each do |ty|
+            %td= ty.yardage
+          %td= tee.back_nine.pluck(:yardage).inject(0, :+)
+          %th= tee.tee_yardages.sum(:yardage)
+          -# %td= tee.rating
+      %tr
+        %th Handicap
+        - @front_nine.each do |hole|
+          %td= hole.handicap
+        %td
+        - @back_nine.each do |hole|
+          %td= hole.handicap
+        %td
+        %td

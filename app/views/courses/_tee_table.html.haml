@@ -1,0 +1,19 @@
+%table
+  %thead
+    %tr
+      %td{width: "100px;"} Color
+      %td Rating
+      %td Slope
+      %td Yardage
+      - if current_user
+        %td HCP
+  %tbody
+    - @course.tees.to_a.sort_by!{|tee| tee.yardage}.reverse.each do |tee|
+      %tr
+        %td= tee.color
+        %td= tee.rating
+        %td= tee.slope
+        %td= tee.yardage
+        - if current_user
+          - unless current_user.handicap.class == String
+            %td= current_user.handicap * tee.slope / 113
