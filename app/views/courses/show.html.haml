@@ -31,17 +31,15 @@
               = link_to "#{round.round_date.strftime("%m/%d/%Y")}            |
                 #{round.tee_time.strftime("at %I:%M%p")}", round_path(round) |
 .row
-  -# .large-6.columns
-  -#   %h4 Tees
-  -#   = render 'tee_table'
-  -#   - if current_user
-  -#     - if @course.user == current_user
-  -#       #add_tee_button.label.button.tiny.radius
-  -#         Add New Tee
-  -#       #add_tee_form
-  -#         = render "tees/form"
-  %h4 Scorecard
-  = render 'scorecard'
+  .large-6.columns
+    %h4 Tees
+    = render "tee_table"
+    - if current_user
+      - if @course.user == current_user
+        #add_tee_button.label.button.tiny.radius
+          Add New Tee
+        #add_tee_form
+          = render "tees/form"
 %script{:charset => "utf-8", :type => "text/javascript"}
   var addresses = #{@location};
   var searchCity = "#{@course.full_address}";
@@ -60,11 +58,9 @@
   var elevator;
 
   var mapOptions = {
-  zoom: 8,
+  zoom: 14,
   center: mapCenter,
-  disableDefaultUI: false,
-  mapTypeId: google.maps.MapTypeId.HYBRID,
-  labels: true
+  disableDefaultUI: false
   };
 
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
