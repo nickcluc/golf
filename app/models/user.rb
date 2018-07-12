@@ -53,18 +53,16 @@ class User < ActiveRecord::Base
   end
 
   def handicap
-    if player_rounds.count >= 5
-      differentials = []
-      player_rounds.includes(:tee).each{ |round| differentials << (round.score - round.tee.rating) * 113 / round.tee.slope }
-      differentials.sort!
-      usable_differentials = []
-      diff_count = differentials.length
-      n = DIFF_HASH[diff_count]
-      n.times{ usable_differentials << differentials.shift }
-      ( usable_differentials.inject(0){ |sum, number| sum + number } / usable_differentials.length * 0.96 ).round(0)
-    else
-      "You need to play #{5-player_rounds.count} more rounds to calculate a handicap."
-    end
+    return "You need to play #{5 - rounds.count} more rounds to calculate a handicap." if rounds.count < 5
+
+    differentials = get_differentials
+
+    usable_differentials = []
+    diff_count = differentials.length
+
+    n = DIFF_HASH[diff_count] rescue ArgumentError
+    n.times{ usable_differentials << differentials.shift }
+    ( usable_differentials.inject(0){ |sum, number| sum + number } / usable_differentials.length * 0.96 ).round(2)
   end
 
   def course_rounds(course)
@@ -81,5 +79,19 @@ class User < ActiveRecord::Base
 
   def pending_friendships(current_user)
     Friendship.where(friend_id: current_user.id, accepted: false, ignored: false)
+  end
+
+  private
+
+  def usable_rounds
+    player_rounds.includes(:round).includes(:tee).sort_by{|player_round| player_round.round.round_date}.reverse.last(20)
+  end
+
+  def get_differentials
+    differentials = []
+    usable_rounds.each do |round|
+      differentials << (round.score - round.tee.rating) * 113 / round.tee.slope
+    end
+    differentials.sort!
   end
 end
