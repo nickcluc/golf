@@ -16,3 +16,19 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 end
+
+Geocoder.configure(:lookup => :test)
+
+Geocoder::Lookup::Test.add_stub(
+  "80 Granite Street, Peabody, MA, 01960", [
+    {
+      'latitude'     => 40.7143528,
+      'longitude'    => -74.0059731,
+      'address'      => '80 Granite Street, Peabody, MA, 01960',
+      'state'        => 'Peabody',
+      'state_code'   => 'MA',
+      'country'      => 'United States',
+      'country_code' => 'US'
+    }
+  ]
+)

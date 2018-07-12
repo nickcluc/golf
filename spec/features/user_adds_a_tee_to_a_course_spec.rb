@@ -6,7 +6,7 @@ feature "user adds a tee to a course", %{
   So I can measure the difficulty of the course.
 
   Acceptance Criteria:
-  [ ] A user cna only add a tee if they created the course
+  [ ] A user can only add a tee if they created the course
   [ ] A user can add tees as needed (blue, white, sr, ladies, etc.)
   [ ] When successfully added, I should see a success message and tee information.
   [ ] When unsuccessful, I should see an error message and the form.
@@ -14,6 +14,7 @@ feature "user adds a tee to a course", %{
   let (:test_course) do
     FactoryGirl.create(:course)
   end
+
   scenario "user adds a tee succesfully" do
     test_tee = FactoryGirl.build(:tee)
 
@@ -29,7 +30,7 @@ feature "user adds a tee to a course", %{
     fill_in "Yardage", with: test_tee.yardage
 
     click_on "Create Tee"
-    
+
     expect(page).to have_content "Tee created successfully!"
   end
 end
