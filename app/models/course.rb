@@ -19,5 +19,4 @@ class Course < ActiveRecord::Base
   def full_address
     [street_address, city, state, zip_code].compact.join(' ')
   end
-
 end

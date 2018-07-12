@@ -4,4 +4,8 @@ class Round < ActiveRecord::Base
   has_many :player_rounds
 
   validates :user_id, :course_id, :round_date, :tee_time, presence: true
+
+  def unscored?
+    player_rounds.empty?
+  end
 end

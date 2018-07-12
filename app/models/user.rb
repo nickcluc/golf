@@ -42,10 +42,8 @@ class User < ActiveRecord::Base
 
   def not_scored_rounds(rounds_count=3)
     not_scored = []
-    rounds.includes(:player_rounds).where("round_date < ?", Date.today).each do |round|
-      not_scored << round if round.player_rounds.empty?
-    end
-    not_scored.last(rounds_count)
+    rounds = self.rounds.includes(:player_rounds).includes(:course)
+    rounds.where("round_date < ?", Date.today).to_a.keep_if { |r| r.unscored?}
   end
 
   def upcoming_rounds
@@ -62,11 +60,11 @@ class User < ActiveRecord::Base
 
     n = DIFF_HASH[diff_count] rescue ArgumentError
     n.times{ usable_differentials << differentials.shift }
-    ( usable_differentials.inject(0){ |sum, number| sum + number } / usable_differentials.length * 0.96 ).round(2)
+    ( usable_differentials.inject(0) { |sum, number| sum + number } / usable_differentials.length * 0.96 ).round(2)
   end
 
   def course_rounds(course)
-    rounds.where("course_id = ? AND round_date > ?", course.id, Date.today)
+    upcoming_rounds.where(course_id: course.id)
   end
 
   def accepted_friends
@@ -84,7 +82,12 @@ class User < ActiveRecord::Base
   private
 
   def usable_rounds
-    player_rounds.includes(:round).includes(:tee).sort_by{|player_round| player_round.round.round_date}.reverse.last(20)
+    player_rounds
+      .includes(:round)
+      .includes(:tee)
+      .sort_by { |player_round| player_round.date }
+      .reverse
+      .last(20)
   end
 
   def get_differentials

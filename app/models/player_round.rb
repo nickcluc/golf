@@ -6,4 +6,8 @@ class PlayerRound < ActiveRecord::Base
 
   validates :user_id, :round_id, :score, :hole_count, :tee_id, presence: true
   validates :score, :hole_count, numericality: { only_integer: true }
+
+  def date
+    round.round_date
+  end
 end
