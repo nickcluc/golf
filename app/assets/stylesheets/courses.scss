@@ -10,3 +10,12 @@
   background-repeat: no-repeat;
   height: 100vh;
 }
+
+#locationField {
+  position: relative;
+  width: 480px;
+}
+
+.pac-container {
+  z-index: 1051 !important;
+}

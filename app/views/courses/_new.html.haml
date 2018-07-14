@@ -2,11 +2,15 @@
   .small-12.columns
     %h1.title Add A Course
 .small-8-centered.columns
+  #locationField
+    %input{ id: "gmaps-input-name", placeholder: "Search For a Course", onFocus: "geolocate()", type: "text" }
   = simple_form_for [@user, @course] do |f|
-    = f.input :name
-    = f.input :street_address, label: "Street Address"
-    = f.input :city
-    = f.input :state, collection: us_states
-    = f.input :zip_code, label: "Zip Code"
-    = f.input :phone, label: "Phone Number"
+    = f.input :name, label: "Course Name", input_html: { id: "course_name" }
+    = f.input :street_address, label: "Street Address", input_html: { id: "route" }
+    = f.input :city, input_html: { id: 'locality' }
+    = f.input :state, collection: us_states, input_html: { id: 'administrative_area_level_1' }
+    = f.input :zip_code, label: "Zip Code", input_html: { id: 'postal_code' }
+    = f.input :phone, label: "Phone Number", input_html: { id: 'tel' }
     = f.button :submit
+
+%script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_PLACES_API_KEY']}&libraries=places&callback=initAutocomplete", type: "text/javascript"}

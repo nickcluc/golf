@@ -16,4 +16,4 @@
         %td= tee.yardage
         - if current_user
           - unless current_user.handicap.class == String
-            %td= current_user.handicap * tee.slope / 113
+            %td= (current_user.handicap * tee.slope / 113).round(2)

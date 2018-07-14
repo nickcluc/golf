@@ -12,10 +12,14 @@
         %td
           = link_to "#{upcoming.tee_time.strftime("%I:%M%p")}", round_path(upcoming)
 - if @user == current_user
-  %a{"data-reveal-id" => "new-round-modal", :href => "#"} Add A New Tee Time
+  %a{"data-reveal-id" => "new-round-modal", :href => "#", id: 'new-tee-time-button'} Add A New Tee Time
 #new-round-modal.reveal-modal{"data-reveal" => ""}
   = render "rounds/new"
   %a.close-reveal-modal ×
 #secondModal.reveal-modal{"data-reveal" => ""}
   = render "courses/new"
   %a.close-reveal-modal ×
+
+- if flash[:notice]
+  :javascript
+    document.getElementById('new-tee-time-button').click();

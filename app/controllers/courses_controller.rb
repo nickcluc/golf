@@ -14,10 +14,19 @@ class CoursesController < ApplicationController
     @course.user = current_user
     if @course.save
       flash[:notice] = "Course created successfully!"
-      redirect_to course_path(@course)
+      if request.path == user_courses_path
+        @round = Round.new
+        redirect_to user_path @course.user
+      else
+        redirect_to course_path(@course)
+      end
     else
       flash[:notice] = "Error(s) prevented course from being created"
-      render :new
+      if request.path == user_courses_path
+        render partial: 'courses/new'
+      else
+        render :new
+      end
     end
   end
 

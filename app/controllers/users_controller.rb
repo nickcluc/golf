@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # binding.pry
     if params[:id]
       @user = User.includes(:player_rounds).find(params[:id])
     else
