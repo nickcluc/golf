@@ -218,7 +218,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99.3)
-    mini_magick (4.0.2)
+    mini_magick (4.9.4)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     multi_json (1.12.1)
