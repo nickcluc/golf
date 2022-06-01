@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   mount_uploader :cover_image, CoverImageUploader
   mount_uploader :profile_photo, ProfilePhotoUploader
-  crop_uploaded :profile_photo
 
   has_many :rounds
   has_many :player_rounds
@@ -14,8 +13,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  searchkick
 
   DIFF_HASH = {
     5 => 1,

@@ -10,11 +10,7 @@ feature "User removes friends", %{
 
   before :each do
     @test_user_one = FactoryGirl.create(:user)
-    @test_user_one.reindex
-    User.searchkick_index.refresh
     @test_user_two = FactoryGirl.create(:user, first_name: "Michael")
-    @test_user_two.reindex
-    User.searchkick_index.refresh
     sign_in_as(@test_user_one)
     visit user_path(@test_user_two)
     click_link "Add Friend"

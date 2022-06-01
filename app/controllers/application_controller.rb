@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [
+    devise_parameter_sanitizer.permit(:sign_up, keys: [
       :first_name,
       :last_name,
       :cover_image,
@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
       :profile_photo_crop_y,
       :profile_photo_crop_w,
       :profile_photo_crop_h
-    ]
-    devise_parameter_sanitizer.for(:account_update) << [
+    ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [
       :first_name,
       :last_name,
       :cover_image,
@@ -30,6 +30,6 @@ class ApplicationController < ActionController::Base
       :profile_photo_crop_y,
       :profile_photo_crop_w,
       :profile_photo_crop_h
-    ]
+    ])
   end
 end
